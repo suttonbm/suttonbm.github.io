@@ -1,0 +1,13 @@
+# Site navigation links
+
+- title: About
+  url: /about/
+
+- title: Travel
+  url: /travel/
+
+- title: Projects
+  url: /projects/
+
+- title: Search
+  url: /search/

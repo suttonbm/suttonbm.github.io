@@ -1,0 +1,150 @@
+---
+title: "Regression Models"
+date: 2016-05-01
+author: suttonbm
+layout: post
+categories:
+  - projects
+tags:
+  - coursera
+  - data.science
+  - R
+project: datasciencecoursera
+excerpt: >
+  Quiz 1
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Quiz 1
+
+### Question 1
+Consider the data set given by:
+```{r}
+x <- c(0.18, -1.54, 0.42, 0.95)
+```
+With weights given by:
+```{r}
+w <- c(2, 1, 3, 1)
+```
+Give the value of $$\mu$$ that minimizes the least squares equation
+$$
+\sum_{i-1}^nw_i(x_i-\mu)^2
+$$
+
+### Solution
+```{r}
+values <- sum(x*w)
+count <- sum(w)
+values/count
+```
+
+### Question 2
+Consider the following dataset:
+```{r}
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0.05)
+```
+Fit the regression through the origin and get the slope treating y as the outcome and x as the regressor. (Hint, do not center the data since we want regression through the origin, not through the means of the data.)
+
+### Solution
+```{r}
+model <- lm(y ~ x - 1)
+coefficients(model)[["x"]]
+```
+
+### Question 3
+Do
+```{r}
+data(mtcars)
+```
+from the datasets package and fit the regression model with mpg as the outcome and weight as the predictor. Give the slope coefficient.
+
+### Solution
+```{r}
+model <- lm(mpg ~ wt, data=mtcars)
+coefficients(model)[["wt"]]
+```
+
+### Question 4
+Consider data with an outcome (Y) and a predictor (X). The standard deviation of the predictor is one half that of the outcome. The correlation between the two variables is .5. What value would the slope coefficient for the regression model with Y as the outcome and X as the predictor?
+
+### Solution
+The slope coefficient is given by $cor(X,Y)*\frac{\sigma_y}{\sigma_x}$:
+```{r}
+sigma_y <- 1
+sigma_x <- 0.5*sigma_y
+corr <- 0.5
+corr * (sigma_y/sigma_x)
+```
+
+### Question 5
+Students were given two hard tests and scores were normalized to have empirical mean 0 and variance 1. The correlation between the scores on the two tests was 0.4. What would be the expected score on Quiz 2 for a student who had a normalized score of 1.5 on Quiz 1?
+
+### Solution
+```{r}
+corr <- 0.4
+q1score <- 1.5
+q1score*corr
+```
+
+### Question 6
+Consider:
+```{r}
+x <- c(8.58, 10.46, 9.01, 9.64, 8.86)
+```
+What is the value of the first measurement if x were normalized (to have mean 0 and variance 1)?
+
+### Solution
+```{r}
+xNorm <- scale(x)
+xNorm[1,1]
+```
+
+### Question 7
+Consider the following data set (used above as well). What is the intercept for fitting the model with x as the predictor and y as the outcome?
+```{r}
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0.05)
+```
+
+### Solution
+```{r}
+model <- lm(y ~ x)
+coefficients(model)[["(Intercept)"]]
+```
+
+### Question 8
+You know that both the predictor and response have mean 0. What can be said about the intercept when you fit a linear regression?
+
+### Solution
+The intercept must be zero.
+
+### Question 9
+Consider:
+```{r}
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+```
+What value minimizes the sum of the squared distances between these points and itself?
+
+### Solution
+The sum squared distances will be minimized at the mean of the values:
+```{r}
+mean(x)
+```
+
+### Question 10
+Let the slope having fit Y as the outcome and X as the predictor be denoted as $$\beta_1$$. Let the slope from fitting X as the outcome and Y as the predictor be denoted as $$\gamma_1$$. Suppose that you divide $$\beta_1$$ by $$\gamma_1$$; in other words consider $$\beta_1/\gamma_1$$. What is this ratio always equal to?
+
+### Solution
+$$
+\begin{aligned}
+  \beta_1 & = cor(y, x) * \frac{\sigma_y}{\sigma_x} \\
+  \gamma_1 & = cor(x, y) + \frac{\sigma_x}{\sigma_y} \\
+  \frac{\beta_1}{\gamma_1} & = \frac{cor(y, x) * \frac{\sigma_y}{\sigma_x}}{cor(x, y) * \frac{\sigma_x}{\sigma_y}} \\
+  & = 1 * \frac{\sigma_y/\sigma_x}{\sigma_x/\sigma_y} \\
+  & = \frac{var(Y)}{var(X)}
+\end{aligned}
+$$

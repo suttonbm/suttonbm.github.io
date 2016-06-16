@@ -1,0 +1,31 @@
+- Update site URL before publishing to github
+- Figure out how to serve images from the web
+- Fix author avatar cutoff
+
+- Featured Image:
+image:
+  feature: so-simple-sample-image-2.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+- Align right picture
+![Smithsonian Image]({{ site.url }}/images/3953273590_704e3899d5_m.jpg)
+{: .pull-right}
+- Other useful tags
+categories: articles
+tags: [sample-post, readability]
+
+- Images in columns
+<figure class="half">
+	<img src="/images/image-filename-1.jpg" alt="image">
+	<img src="/images/image-filename-2.jpg" alt="image">
+	<figcaption>Caption describing these two images.</figcaption>
+</figure>
+<figure class="third">
+	<a href="http://placehold.it/1200x600.jpg"><img src="http://placehold.it/600x300.jpg" alt="image"></a>
+	<a href="http://placehold.it/1200x600.jpg"><img src="http://placehold.it/600x300.jpg" alt="image"></a>
+	<a href="http://placehold.it/1200x600.jpg"><img src="http://placehold.it/600x300.jpg" alt="image"></a>
+	<figcaption>Caption describing these three images.</figcaption>
+</figure>
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/PWf4WUoMXwg" frameborder="0"> </iframe>
+

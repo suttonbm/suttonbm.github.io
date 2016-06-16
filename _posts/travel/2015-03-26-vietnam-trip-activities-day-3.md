@@ -1,0 +1,32 @@
+---
+title: Vietnam Trip Activities, Day 3
+date: 2015-03-26
+author: suttonbm
+layout: post
+categories:
+  - travel
+tags:
+  - travel
+  - vietnam
+excerpt: >
+  I caught on to the local moped driving style.  It consists of driving quickly and honking a lot.
+---
+Today we woke up before the sunrise.  We had intended to watch it on the sand dunes (or at least, on the beach).  But, it ended up as a failed attempt because there were no taxis on the streets that early.  As it turns out, rural areas get up slower than the bustling city &#8211; surprise?  Nonetheless, we did enjoy a great ocean view from the back yard of our little beach resort.  Now of course, talk of a beach resort may conjure up images of a tropical paradise with people waiting on you hand and foot, not to mention $500 a night.  This place was $25 a night.  No frills or anything, but a beautiful little house right on the water.
+
+Anyways, we enjoyed the beach view for a bit while everyone else got up, and then took a short trip over to the sand dunes at Mui Ne.  Diana and I climbed way up into them, followed by a pack of little vietnamese ladies trying to get us to pay 50,000d to sled down the hill.  Soooooo expensive.  So we kinda just let them tag along while we walked all over the place.  I gotta hand it to them, they are persistent.  I mean, really REALLY persistent.  I don&#8217;t think either one of us gave ANY indication we had ANY intention of sledding, but they followed us up,down,up,down,up sand dunes for a good twenty minutes.  It got to the point where we were going to pay them off to let us enjoy the sand dunes in peace, but then a second party showed up.  We didn&#8217;t want to open that pandora&#8217;s box, so we just kept walking with our entourage.  Eventually they did give up, and we got a little quiet time to enjoy the scenery.
+
+After we got back down from the dunes, we grabbed a simple, typical Vietnamese breakfast called Banh Mi Op La, which is essentially two fried eggs and a small loaf of french bread.  It was actually really yummy.  Grand total for 5 people was ~200,000d ($10).  Afterwards, we headed back to the resort so Diana&#8217;s dad, the driver, and Tony could take a swim in the ocean.  Diana and I were lukewarm on the idea, and really wanted to go see the colorful boats that are always parked in the harbor at Mui Ne.  It wasn&#8217;t a short stroll down the road, so we needed to procure transportation first.  About 100m down the road, we found a couple of guys with a moped up for grabs.  They wanted 50,000d for two hours (plus gas).  After a fillup, that was 100,000d.  Pretty cheap wheels.  After a slightly shaky start, I caught on to the local moped driving style.  It consists of driving quickly and honking a lot.  Don&#8217;t bother with lanes, just pass the slow guy in front of you on either side.
+
+The harbor was about 15 minutes away by moped, and everything we hoped it would be.  The boats were painted in vibrant colors and certainly plentiful.  It seemed like there were local folks who just brought their catch to the beach and sold them directly to people.  We didn&#8217;t really go shopping or anything, but it was cool to see the hustle and bustle of the local economy running.  The first vantage point we found wasn&#8217;t ideal for pictures, so we set off to find a better angle.  We rode right into downtown and took some really really back roads to find our way back to the beach.  We did end up finding the beach angle we wanted, but it was somewhat disappointing to find it accompanied by piles and piles of trash and inundated with the putrid smell of rotting seafood.  The trash seems to be a common trend here, where people are generally less educated and insensitive to the preservation of the natural beauty of things.  Driving down the highway, plastic bags are like leaves on the trees.
+
+Once we concluded our moped tour, we packed things up and check out of the resort.  We were getting a little hungry (Banh Mi was at 6:30a), so we decided to stop for brunch.  The strategy for choosing a location was to look for any place with some foreigners eating to have some kind of confidence the food was not tainted or something.  We found a little place (slightly shady by my standards&#8230;) and ordered some Com Thit Nuong (grilled pork and egg with rice).  Diana and I did make a pointed effort to stay clear of the ice here, especially after I noticed the waitress scooping some out of a ragged, blackened styrofoam cooler.  Cringe.  Still, I give myself a few brownie points for just eating at this and some of the other places we&#8217;ve stopped along the way.  No diarrhea yet &#8211; fingers crossed!
+
+After food we set off on our way back to Saigon.  About 20km outside Mui Ne, we stopped at Ta Cu Mountain to see Viatnam&#8217;s largest reclining Buddha statue.  We had expected a simple &#8211; walk in, picture, walk out &#8211; tourist destination, but were greeted with a cable car ride and 350 steps up to the statue.  Diana was terrified all the way up the cable ride, and Diana&#8217;s dad was totally beat by the time we got to the statue.  Still, he&#8217;s pretty in shape for an old dude.  The buddha was a pretty cool stop, if nothing else, for the nice vistas from the mountain top.
+
+The rest of the day was pretty much driving.
+
+We hit Saigon right around rush hour and got to experience that&#8230;  I have new appreciation for Dallas traffic.  Even the wrecks.  On the way into the city, we passed NOT LESS THAN eight broken down semi trucks.  I had to ask myself, do these people know anything about vehicular maintenance?  There was one broken truck we were stopped next to for a while.  Looked like the load had slipped off the trailer plate, and they were trying to get it back on.  There were a total of four guys working on it, and I think one actually had some idea what he was doing.  It also was somewhat surprising to me how many trucks were on the road, but empty or half loaded.
+
+Dinner was by the riverside at a restaurant called 13.  Diana&#8217;s Dad&#8217;s friend treated us to a nice family-style meal consisting of chicken curry, caramel fish, eggplant, sweet & sour soup, rau muong (veggie), and this yummy shrimp lettuce wrap appetizer thingy.  We were pretty stuffed.  Surprisingly, Diana and I have already lost weight since we arrived.  It seems the fresh, healthy food choices are a big improvement over typical, processed American food.
+
+We passed out after dinner.

@@ -1,0 +1,8 @@
+<!-- _includes/image.html -->
+<figure class="half">
+    <img src="{{ include.url1 }}" alt="{{ include.title1 }}"/>
+    <img src="{{ include.url2 }}" alt="{{ include.title2 }}"/>
+    {% if include.caption %}
+    <figcaption>{{ include.caption }}</figcaption>
+    {% endif %}
+</figure>

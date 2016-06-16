@@ -1,0 +1,140 @@
+---
+title: "Motor Trend Regression Analysis"
+date: "May 5, 2016"
+output:
+  pdf_document: default
+  html_document:
+    keep_md: yes
+css: projectstyle.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Executive Summary {#left}
+Using a collection of 32 data points for a variety of vehicles, we will attempt to answer the following questions:
+
+* Is an automatic or manual transmission better for MPG?
+* If the manual transmission has a significant impact on MPG, what is the quantifiable impact?
+
+In order to answer these two questions, we will take the following steps:
+
+* Import and pre-process the data
+* Perform initial qualitative analysis through exploratory graphs
+* Select an appropriate model to investigate the impact to MPG
+* Analyze the model results for quality of fit
+* Quantify significance and impact to MPG in our selected model
+
+### Importing Data
+The data in the `mtcars` dataset has eleven fields. All the fields are represented as numeric data in the original data set. In order to simplify the model building process, we will create factor variables where appropriate.
+
+```{r}
+data(mtcars)
+
+# Create copy of mtcars with factored variables
+mtcarsF <- mtcars
+mtcarsF$cyl <- factor(mtcarsF$cyl, levels=c(4, 6, 8))
+mtcarsF$am <- factor(mtcarsF$am)
+levels(mtcarsF$am) <- c("auto", "manual")
+mtcarsF$gear <- factor(mtcarsF$gear, levels=c(3, 4, 5))
+mtcarsF$carb <- factor(mtcarsF$carb, levels=c(1,2,3,4,5,6,7,8))
+mtcarsF$vs <- factor(mtcarsF$vs)
+levels(mtcarsF$vs) <- c("V", "S")
+```
+
+### Exploratory Analysis
+Let's take an initial look at the `mtcars` dataset.
+```{r}
+dim(mtcarsF)
+head(mtcarsF)
+```
+
+As an initial exploratory tool, we can create a simple scatterplot of MPG vs transmission type (Figure 1 in Appendix):
+
+```{r}
+library(lattice)
+figure1 <- dotplot(mpg~ am, data=mtcars, main="MPG vs Transmission Type")
+```
+
+From this plot, it seems that there is a trend, but we need to control for confounding variables. We can explore potential confounding variables by looking at correlation:
+
+```{r}
+corToMPG <- cor(mtcars$mpg, mtcars)
+# Order correlation terms
+(corToMPG <- corToMPG[,order(-abs(corToMPG[1,]))])
+```
+
+Note that there are many variables showing higher correlation to `mpg` than transmission type (`am`).  This suggests that there may be strong confounding factors affecting the impact of transmission on MPG.
+
+### Model Selection
+To start with, let's try a simple linear regression with `mpg` as the outcome and `am` as the regressor:
+
+```{r}
+simpleModel <- lm(mpg ~ am, data=mtcarsF)
+```
+
+We can see from the summary (see appendix) that the p-value is pretty low.  However, the R-squared is very poor. Based on this, the model is probably not the best fit.  Let's try adding in all the variables (summary in appendix):
+
+```{r}
+complicatedModel <- lm(mpg ~ .-1, data=mtcars)
+```
+
+Now that all the variables are included in the model, none of the p-values are very significant, and the R-squared value is only marginally improved.
+
+The selection of regressor variables can be simplified using the step method (summary in appendix):
+
+```{r}
+newModel <- step(complicatedModel, direction="both", trace=F)
+```
+
+It looks like the step method included engine displacement (`disp`), but the p-value is not very significant.  Let's manually run one more iteration with that variable removed:
+
+```{r}
+mtcars$am <- factor(mtcars$am)
+levels(mtcars$am) <- c("auto", "manual")
+finalModel <- lm(mpg ~ am + wt + qsec, data=mtcars)
+```
+
+### Model Examination
+The final model we selected includes transmission type (`am`) as well as weight (`wt`) and quarter mile time (`qsec`).  All have p<0.05, and the R-squared value is also pretty good.
+
+We can take a look at the quality of the fit using `autoplot()` (Figure 2 in appendix):
+
+The normal Q-Q plot appears to be pretty well fitted, but the residual values appear to have quite wide distributions.
+
+We can also construct a confidence interval on the impact of transmission type:
+```{r}
+confint.lm(finalModel, level=0.95)
+```
+
+### Conclusions
+Based on the analysis above, we could conclude that a manual transmission is in fact better for MPG performance.  However, it is tough to truly quantify the impact.
+
+Based on the `finalModel` fit, we could conclude with 95% confidence that a manual transmission can squeeze out 0.05 - 5.82 MPG more than an automatic transmission.  However, the residual plots suggest that there may be more going on that we have not accounted for in the model.
+
+It is possible that the fit appears poor due to the small number of samples (32), or that the data collection did not include variables that confound the MPG regression.
+
+## Appendix
+### Model #1 Summary
+```{r}
+summary(simpleModel)
+```
+### Model #2 Summary
+```{r}
+summary(complicatedModel)
+```
+### Model #3 Summary
+```{r}
+summary(newModel)
+```
+### Figure 1
+```{r}
+figure1
+```
+### Figure 2
+```{r}
+library(ggplot2)
+library(eeptools)
+figure2 <- autoplot(finalModel)
+```

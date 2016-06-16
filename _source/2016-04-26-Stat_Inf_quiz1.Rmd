@@ -1,0 +1,110 @@
+---
+title: "Statistical Inference"
+date: 2016-04-30T1:27
+author: suttonbm
+layout: post
+categories:
+  - projects
+tags:
+  - coursera
+  - data.science
+  - R
+project: datasciencecoursera
+excerpt: >
+  Quiz 1
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Quiz 1
+## Question 1
+Consider influenza epidemics for two parent heterosexual families. Suppose that the probability is 17% that at least one of the parents has contracted the disease. The probability that the father has contracted influenza is 12% while the probability that both the mother and father have contracted the disease is 6%. What is the probability that the mother has contracted influenza?
+
+## Solution
+$$
+\begin{aligned}
+  P(F \cup M) & = 0.17 \\
+  P(F) & = 0.12 \\
+  P(F \cap M) & = 0.06 \\
+  P(M) & = P(F \cup M) - P(F) + P(F \cap M)
+\end{aligned}
+$$
+```{r}
+p_M = 0.17 - 0.125 + 0.06
+p_M
+```
+
+## Question 2
+A random variable, X is uniform, a box from 0 to 1 of height 1. (So that its density is $$f(x)=1$$ for $$0 \leq x \leq 1$$.) What is its 75th percentile?
+
+## Solution
+The distribution of $$X$$ looks like a box. The 75th percentile $$P_{q75}$$ is defined as the value of $$X$$ such that 75% of the time, $$X$$ is less than or equal to $$P_{q75}$$.
+```{r}
+qunif(p=0.75, min=0, max=1)
+```
+
+## Question 3
+You are playing a game with a friend where you flip a coin and if it comes up heads you give her X dollars and if it comes up tails she gives you Y dollars. The probability that the coin is heads is p (some number between 0 and 1.) What has to be true about X and Y to make so that both of your expected total earnings is 0. The game would then be called "fair".
+
+## Solution
+Friend's winnings:
+$$E|F| = X \times p$$
+Your winnings:
+$$E|M| = Y \times (1-p)$$
+For an equal outcome, set $$E|F| = E|M|$$:
+$$
+\begin{aligned}
+  X \times p & = Y \times (1-p) \\
+  \frac{X}{Y} & = \frac{1-p}{p}
+\end{aligned}
+$$
+
+## Question 4
+A density that looks like a normal density (but may or may not be exactly normal) is exactly symmetric about zero. (Symmetric means if you flip it around zero it looks the same.) What is its median?
+
+## Solution
+If the distribution is symmetric, the median must be at the point of symmetry. In this example, 0.
+
+## Question 5
+Consider the following PMF shown below in R
+```{r}
+x <- 1:4
+p <- x/sum(x)
+temp <- rbind(x, p)
+rownames(temp) <- c("X", "Prob")
+temp
+```
+What is the mean?
+
+## Solution
+The empirical mean of a set of data is given by:
+$$\bar{X} = \sum_{i=1}^{n} x_i \times p_{x_i}$$
+```{r}
+mean = sum(x*p)
+mean
+```
+
+## Question 6
+A web site for home pregnancy tests cites the following: "When the subjects using the test were women who collected and tested their own samples, the overall sensitivity was 75%. Specificity was also low, in the range 52% to 75%." Assume the lower value for the specificity. Suppose a subject has a positive test and that 30% of women taking pregnancy tests are actually pregnant. What number is closest to the probability of pregnancy given the positive test?
+
+## Solution
+From the description of the problem, we know:
+$$
+\begin{aligned}
+  P(T | P) & = 0.75 \\
+  P(T' | P') & = 0.52 \\
+  P(P) & = 0.30 \\
+  P(P') & = 0.70
+\end{aligned}
+$$
+Where $$P$$ is the event that a subject is pregnant, and $$T$$ is the event that a positive pregnancy test is observed.
+We can then apply bayes' rule:
+$$
+P(P | T) = \frac{P(T | P) \times P(P)}{P(T | P) \times P(P) + P(T' | P') \times P(P')}
+$$
+```{r}
+p_PgivenT = 0.75*0.30/(0.75*0.30+0.48*0.70)
+round(p_PgivenT * 100)
+```

@@ -1,0 +1,118 @@
+---
+title: "Reproducible Research"
+date: 2016-05-08
+author: suttonbm
+layout: post
+categories:
+  - projects
+tags:
+  - coursera
+  - data.science
+  - R
+project: datasciencecoursera
+excerpt: >
+  Project 1
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+In this document, I will perform an initial data analysis of an activity monitoring dataset. All code used will be included for the sake of reproducibility.
+
+### Loading and Preprocessing
+First we need to download the data from the internet and import into an R session:
+```{r}
+if (!file.exists("activitydata.zip")) {
+  download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip", "activitydata.zip")
+}
+unzip("activitydata.zip")
+actData <- read.csv("activity.csv")
+actData$date <- as.Date(actData$date, "%Y-%m-%d")
+```
+The `actData` dataset consists of 17568 rows and 3 columns of data.  The three columns are `steps`, `date`, and `interval`:
+ * `steps` -> number of steps taken in a five-minute interval
+ * `date` -> the date when a measurement was taken
+ * `interval` -> an identifier for the five-minute interval in which a measurement was taken
+```{r}
+dim(actData)
+summary(actData)
+```
+Also note that the data has a large number of "NA" values.  We will address these values later.
+
+### Analysis
+Let's look at some properties of the dataset.  We can do some quick initial analysis of daily steps by aggregating the data.  Note that for now, we will ignore NA values:
+```{r}
+actData2 <- na.omit(actData)
+actDataDaily <- aggregate(actData2$steps, by=list(actData2$date), FUN="sum")
+names(actDataDaily) <- c("date", "steps")
+```
+
+#### What is Mean Total Steps/Day?
+Let's generate a histogram of steps taken per day:
+```{r}
+hist(actDataDaily$steps, breaks=20, xlab="Total Daily Steps")
+```
+We can also compare to the mean and median:
+```{r}
+(meanDailySteps <- mean(actDataDaily$steps))
+(medianDailySteps <- median(actDataDaily$steps))
+```
+Note that the mean and median make sense when compared to the histogram - both fall near the middle of the distribution (which is ~normal)
+
+#### Average Daily Activity
+Let's take a look at 5-minute intervals throughout the day.  Which inverval has the highest average activity?
+```{r}
+actDataIntervals <- aggregate(actData2$steps, by=list(actData2$interval), FUN="mean")
+names(actDataIntervals) <- c("interval", "steps")
+plot.ts(actDataIntervals$steps, ylab="Average Steps in Interval")
+```
+The maximum average steps in a five minute interval is:
+```{r}
+(maxSteps <- max(actDataIntervals$steps))
+```
+And the interval in which the max occurs is:
+```{r}
+(maxStepsInterval <- actDataIntervals$interval[actDataIntervals$steps == maxSteps])
+```
+
+#### Interpreting Missing Values
+There are a couple different ways to interpret missing values.  We could assume that any missing values are actually zero steps, or, we could look at the interval of a missing value and apply the average step count of all the other days:
+```{r}
+fixNAs <- function(steps, interval) {
+  if (is.na(steps)) {
+    return(actDataIntervals$steps[actDataIntervals$interval == interval])
+  } else {
+    return(steps)
+  }
+}
+
+actData3 <- actData
+actData3$steps <- mapply(fixNAs, actData3$steps, actData3$interval)
+```
+Let's examine the impact of adding NA values:
+```{r}
+actData3Daily <- aggregate(actData3$steps, by=list(actData3$date), FUN="sum")
+names(actData3Daily) <- c("date", "steps")
+hist(actData3$steps, breaks=20, xlab="Total Daily Steps")
+mean(actData3Daily$steps)
+median(actData3Daily$steps)
+```
+There is a slight, but minor, impact to the mean and median values when including estimated NA values based on interval.  The histogram is nearly indistinguishable.
+
+#### Activity Patterns Weekday vs Weekend
+Let's take a look at the trends for activity between weekends and weekdays.  First, we need to create a data column reflecting day of the week and categorize:
+```{r}
+actData3$wkday <- weekdays(actData3$date, abbreviate=T) %in% c("Sat", "Sun")
+actData3$wkdayfactor <- as.factor(actData3$wkday)
+levels(actData3$wkdayfactor) <- c("weekday", "weekend")
+actData3Intervals <- aggregate(actData3$steps, by=list(actData3$interval, actData3$wkdayfactor), FUN="mean")
+names(actData3Intervals) <- c("interval", "wkdayfactor", "steps")
+```
+Let's create a side-by-side graphic comparison:
+```{r}
+library(lattice)
+xyplot(steps ~ interval | wkdayfactor, data=actData3Intervals, type="l")
+```
+There are some differences between the two, namely higher overall activity on the weekend.

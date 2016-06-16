@@ -1,0 +1,251 @@
+---
+title: "Practical Machine Learning"
+date: 2016-05-28
+author: suttonbm
+layout: post
+categories:
+  - projects
+tags:
+  - coursera
+  - data.science
+  - R
+project: datasciencecoursera
+excerpt: >
+  Final Project
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Executive Summary
+Thanks to the bounty of fitness trackers on the market, widespread collection of personal activity data has been made possible. These devices have a variety of forms and features, but the majority of devices include an accelerometer. The data from this accelerometer is most commonly used to track steps taken, and in some cases, sleep quality, types of activity, or other informations about physical activity.
+
+Despite the availability of raw accelerometer data from these devices, most only report quantity of movement, not quality.
+
+In the following report, we will utilize accelerometer data from three locations on the body to classify quality of barbell lifts. A control group was used to generate training data for five different classifications of lift quality:
+
+  A) Correct form
+  B) Elbows thrown forward
+  C) Dumbell lifted halfway
+  D) Dumbell lowered halfway
+  E) Hips thrown forward
+
+For more information regarding the data and collection, please refer to:
+
+[http://groupware.les.inf.puc-rio.br/har](http://groupware.les.inf.puc-rio.br/har)
+
+## Data Import and Processing
+In this section of the report, we will import and pre-process the activity data.
+
+#### Data Download & Import
+```{r cache=TRUE}
+trainDataFileURL <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
+testDataFileURL <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
+trainDataFile <- "pml-training.csv"
+testDataFile <- "pml-testing.csv"
+
+# Download the files
+if (!file.exists(trainDataFile)) {
+  download.file(trainDataFileURL, trainDataFile)
+}
+if (!file.exists(testDataFile)) {
+  download.file(testDataFileURL, testDataFile)
+}
+
+# Import the data into R
+train.raw <- read.csv(trainDataFile, na.strings=c("NA", "", "#DIV/0!"))
+test.raw <- read.csv(testDataFile, na.strings=c("NA", "", "#DIV/0!"))
+```
+
+#### Data Cleaning
+Upon initial review of the data, we can quickly identify a number of rows that can be eliminated. There are many columns which do not contain any data (100% `NA`).  These can be removed to reduce the data set.  There are some columns which likely are irrelevant, such as the measurement id (`X`) or user name (`user_name`).
+
+For more information about how we came to the above conclusions, refer to Appendix 1.
+
+```{r cache=TRUE}
+# Downselect columns in training data set
+train <- train.raw[, colSums(is.na(train.raw)) == 0]
+train <- train[, -c(1:7)]
+# Apply same operation so testing data set matches
+test <- test.raw[, colSums(is.na(train.raw)) == 0]
+test <- test[, -c(1:7)]
+```
+
+After making these reductions to the data, we are left with 53 columns out of the original 160.
+
+## Exploratory Data Analysis
+In order to further downselect data and help with model selection, we can perform some initial data analysis. One potential challenge with building our model could be highly correlated inputs.  If we have strong correlation, some pre-processing such as principal component analysis may be useful.
+
+Let's examine correlation using a graphical device:
+
+```{r results='hide', warning=FALSE, message=FALSE, cache=TRUE}
+library(viridis)
+library(gplots)
+
+trainCorr <- cor(train[,-53])
+heatmap.2(abs(trainCorr), col=viridis(10), dendrogram="none", trace="none", main="Correlation Matrix")
+```
+
+The heatmap above indicates that there are some variables with high correlation to each other. However, the majority of variables appear to be fairly independent.
+
+## Algorithm Selection
+Before creating our algorithm, let's split the training data into test and validation sets.
+
+```{r cache=TRUE, warning=FALSE, message=FALSE}
+library(caret)
+library(rpart)
+library(rpart.plot)
+library(rattle)
+
+set.seed(1337)
+
+inTrain <- createDataPartition(train$classe,
+                               p=0.7,
+                               list=FALSE)
+model.train <- train[inTrain, ]
+model.test <- train[-inTrain, ]
+```
+
+Because the outcome variable is categorical, we'll use a similar machine learning algorithm approach.  There are three commonly used algorithms to choose from:
+
+  * Simple Classification Tree
+  * Random Forest Model
+  * Boosted Tree Model
+
+For this analysis we'll compare all three and evaluate relative performance before applying our model to the test data set.
+
+#### Classification Tree
+Since a classification tree is a non-linear type model, we will not perform any data transformations prior to model fit.
+```{r cache=TRUE}
+set.seed(5347)
+model.classTree <- train(classe ~ .,
+                         data=model.train,
+                         method="rpart")
+```
+
+We can take a look at the results with a decision tree plot:
+```{r cache=TRUE}
+fancyRpartPlot(model.classTree$finalModel)
+```
+
+We can evaluate the prediction of this model against the test set we created above:
+```{r cache=TRUE}
+pred.classTree <- predict(model.classTree, model.test)
+conf.classTree <- confusionMatrix(model.test$classe, pred.classTree)
+
+(accuracy.classTree <- conf.classTree$overall[1])
+```
+
+As shown above, the accuracy of this model is low; the out-of-sample error rate is greater than 50%, indicating very poor prediction performance.
+
+#### Random Forest
+Let's run a random forest model and compare its performance against the classification tree.  Due to the computational complexity of the random forest model, we'll alter the training parameters and set up parallel processing.
+```{r cache=TRUE, message=FALSE, warning=FALSE}
+library(parallel)
+library(doParallel)
+
+cluster <- makeCluster(detectCores() - 1)
+registerDoParallel(cluster)
+
+rfControl <- trainControl(method="cv",
+                          number=10,
+                          allowParallel=TRUE)
+
+set.seed(8008)
+model.rf <- train(classe ~ .,
+                  data=model.train,
+                  method="rf",
+                  trControl=rfControl)
+
+stopCluster(cluster)
+```
+
+One of the downsides to the random forest or boosted model methods is that understanding the model becomes much harder. There is no way to generate a convenient plot or chart to visualize how the resulting category is predicted from data.  However, we can still evaluate the accuracy of the model:
+```{r cache=TRUE}
+pred.rf <- predict(model.rf, model.test)
+conf.rf <- confusionMatrix(model.test$classe, pred.rf)
+
+(accuracy.rf <- conf.rf$overall[1])
+```
+
+We can see that the accuracy is greatly enhanced by using the random forest method instead of a simple classification tree.
+
+#### Boosted Model
+For comparison, we'll also fit a model using a boosted tree algorithm.
+```{r cache=TRUE, message=FALSE, warning=FALSE}
+cluster <- makeCluster(detectCores() - 1)
+registerDoParallel(cluster)
+
+gbmControl <- trainControl(method="cv",
+                           number=10,
+                           allowParallel=TRUE)
+
+set.seed(13110)
+model.boosted <- train(classe ~ .,
+                       data=model.train,
+                       method='gbm',
+                       verbose=FALSE,
+                       trControl=gbmControl)
+
+stopCluster(cluster)
+```
+
+Again, there's no good way to visualize the results of this model, but we'll evaluate the accuracy once again:
+```{r cache=TRUE}
+pred.boosted <- predict(model.boosted, model.test)
+conf.boosted <- confusionMatrix(model.test$classe, pred.boosted)
+
+(accuracy.boosted <- conf.boosted$overall[1])
+```
+
+As shown above, the boosted model is still significantly better than a classfication tree, but it is not quite as accurate as the random forest model.
+
+#### Final Model Selection
+In conclusion, we can compare the model accuracy of the three techniques:
+```{r}
+knitr::kable(data.frame(accuracy.classTree, accuracy.rf, accuracy.boosted))
+```
+
+As can be observed in the table above, the random forest model appears to have the greatest accuracy.  As a result, we'll use that model for testing.
+
+## Model Application and Testing
+Since we've already applied the necessary transformations to the testing dataset above (trimming columns), we can directly apply our model and obtain the predicted classifications:
+```{r cache=TRUE}
+(predict(model.rf, test))
+```
+
+
+## Appendix 1: Data Cleaning Information
+First we can take a look at the number of NA values by column, relative to the total length of the dataset:
+```{r}
+dim(train.raw)
+```
+
+We see that there are 19622 rows in this dataset, and 160 columns.
+
+How many of the columns have NA values?
+```{r cache=TRUE}
+sum(apply(train.raw, 2, function(x) sum(is.na(x))) > 0)
+```
+
+How many of the columns have more than 50% NA values?
+```{r cache=TRUE}
+sum(apply(train.raw, 2, function(x) sum(is.na(x))) > 19622/2)
+```
+
+Note that there is no change - columns that have any NA value are missing more than half the data. This doesn't help much with building a model, so we'll eliminate the columns altogether.
+
+Next, we can review for columns that appear not to provide useful data. In particular, let's look at the first seven columns:
+```{r}
+train2.raw <- train.raw[, colSums(is.na(train.raw)) == 0]
+str(train2.raw[, c(1:7)])
+```
+
+Some observations:
+
+  * `x`: appears to be an ID variable, each row has a different value.
+  * `user_name`: appears to be the name of a test subject. This model is seeking to identify correctness of a movement based on accelerometer data, not based on person.
+  * `raw_timestamp_part_1`, `raw_timestamp_part_2`, `cvtd_timestamp`: all three appear to relate to date and time of the measurement being taken.
+  * `new_window`: only one level appears in this column, meaning there is no differentiating data.
+  * `num_window`: unclear what this variable means; it could have an impact, but it does not have a descriptive name. I would leave out of the model to avoid confusion as to the conclusions.

@@ -1,0 +1,113 @@
+---
+title: "Practical Machine Learning"
+date: 2016-05-18T10:42
+author: suttonbm
+layout: post
+categories:
+  - projects
+tags:
+  - coursera
+  - data.science
+  - R
+project: datasciencecoursera
+excerpt: >
+  Quiz 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Quiz 2
+
+### Question 1
+Load the Alzheimer's disease data using the commands:
+```{r}
+library(AppliedPredictiveModeling)
+suppressMessages(library(caret))
+data(AlzheimerDisease)
+```
+Which of the following commands will create training and test sets with about 50% of the observations assigned to each?
+
+### Solution
+```{r}
+adData <- data.frame(diagnosis, predictors)
+testIndex <- createDataPartition(diagnosis, p=0.5, list=FALSE)
+train <- adData[-testIndex, ]
+test <- adData[testIndex, ]
+```
+
+### Question 2
+Load the cement data using the commands:
+```{r}
+library(AppliedPredictiveModeling)
+data(concrete)
+suppressMessages(library(caret))
+set.seed(1000)
+inTrain = createDataPartition(mixtures$CompressiveStrength, p = 3/4)[[1]]
+training = mixtures[ inTrain,]
+testing = mixtures[-inTrain,]
+```
+Make a histogram and confirm the SuperPlasticizer variable is skewed. Normally you might use the log transform to try to make the data more symmetric. Why would that be a poor choice for this variable?
+
+### Solution
+```{r}
+library(ggplot2)
+ggplot(training, aes(Superplasticizer)) + geom_histogram()
+ggplot(training, aes(log(Superplasticizer+1))) + geom_histogram()
+```
+
+From the plots, it becomes clear that the log transformation is ineffective.  The reason is that there are many duplicated values; the transformation can only scale, but cannot eliminate large clusters of identical points.
+
+### Question 3
+Load the Alzheimer's disease data using the commands:
+```{r}
+suppressMessages(library(caret))
+library(AppliedPredictiveModeling)
+set.seed(3433)
+data(AlzheimerDisease)
+adData = data.frame(diagnosis,predictors)
+inTrain = createDataPartition(adData$diagnosis, p = 3/4)[[1]]
+training = adData[ inTrain,]
+testing = adData[-inTrain,]
+```
+Find all the predictor variables in the training set that begin with IL. Perform principal components on these variables with the preProcess() function from the caret package. Calculate the number of principal components needed to capture 90% of the variance. How many are there?
+
+### Solution
+```{r}
+predictors <- names(training)
+(ILpreds <- predictors[grep("^IL", predictors)])
+procPCA <- preProcess(training[, ILpreds], method="pca", thresh=0.9)
+procPCA$numComp
+```
+
+### Question 4
+Load the Alzheimer's disease data using the commands:
+```{r}
+library(caret)
+library(AppliedPredictiveModeling)
+set.seed(3433)
+data(AlzheimerDisease)
+adData = data.frame(diagnosis,predictors)
+inTrain = createDataPartition(adData$diagnosis, p = 3/4)[[1]]
+training = adData[ inTrain,]
+testing = adData[-inTrain,]
+```
+Create a training data set consisting of only the predictors with variable names beginning with IL and the diagnosis. Build two predictive models, one using the predictors as they are and one using PCA with principal components explaining 80% of the variance in the predictors. Use `method="glm"` in the train function. What is the accuracy of each method in the test set? Which is more accurate?
+
+### Solution
+```{r}
+# Evaluate model with all predictors
+trainIL <- training[, c(ILpreds, "diagnosis")]
+testIL <- testing[, c(ILpreds, "diagnosis")]
+model <- train(diagnosis ~ ., data = trainIL, method="glm")
+confusionMatrix(testIL$diagnosis, predict(model, testIL))
+```
+```{r}
+# Evaluate model with PCA
+preproc <- preProcess(training[, ILpreds], method="pca", thresh=0.8)
+trainPCA <- predict(preproc, training[, ILpreds])
+modelPCA <- train(trainIL$diagnosis ~ ., method = "glm", data=trainPCA)
+testPCA <- predict(preproc, testing[, ILpreds])
+confusionMatrix(testIL$diagnosis, predict(modelPCA, testPCA))
+```
