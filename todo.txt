@@ -6,7 +6,7 @@
 image:
   feature: so-simple-sample-image-2.jpg
   credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  creditlink: https://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 - Align right picture
 ![Smithsonian Image]({{ site.url }}/images/3953273590_704e3899d5_m.jpg)
 {: .pull-right}
@@ -21,11 +21,11 @@ tags: [sample-post, readability]
 	<figcaption>Caption describing these two images.</figcaption>
 </figure>
 <figure class="third">
-	<a href="http://placehold.it/1200x600.jpg"><img src="http://placehold.it/600x300.jpg" alt="image"></a>
-	<a href="http://placehold.it/1200x600.jpg"><img src="http://placehold.it/600x300.jpg" alt="image"></a>
-	<a href="http://placehold.it/1200x600.jpg"><img src="http://placehold.it/600x300.jpg" alt="image"></a>
+	<a href="https://placehold.it/1200x600.jpg"><img src="https://placehold.it/600x300.jpg" alt="image"></a>
+	<a href="https://placehold.it/1200x600.jpg"><img src="https://placehold.it/600x300.jpg" alt="image"></a>
+	<a href="https://placehold.it/1200x600.jpg"><img src="https://placehold.it/600x300.jpg" alt="image"></a>
 	<figcaption>Caption describing these three images.</figcaption>
 </figure>
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/PWf4WUoMXwg" frameborder="0"> </iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PWf4WUoMXwg" frameborder="0"> </iframe>
 
