@@ -5,8 +5,8 @@ locale: en_US
 description: Just another Jekyll blog...
 logo: thumbs-up-jpg.jpg
 search: true
-#url: http://localhost:4000
-url: http://suttonbm.github.io
+#url: https://localhost:4000
+url: https://suttonbm.github.io
 
 # Jekyll configuration
 
