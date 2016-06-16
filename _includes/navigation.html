@@ -25,7 +25,13 @@
 {% else %}<header class="masthead">
 	<div class="wrap">
       {% if site.logo != null %}
-  		<a href="{{ site.url }}/" class="site-logo" rel="home" title="{{ site.title }}"><img src="{{ site.url }}/images/{{ site.logo }}" width="200" height="200" alt="{{ site.title }} logo" class="animated fadeInDown"></a>
+        <a href="{{ site.url }}/" class="site-logo" rel="home" title="{{ site.title }}">
+        {% if site.logo contains 'http' %}
+  		<img src="{{ site.logo }}" width="200" height="200" alt="{{ site.title }} logo" class="animated fadeInDown">
+        {% else %}
+        <img src="{{ site.url }}/images/{{ site.logo }}" width="200" height="200" alt="{{ site.title }} logo" class="animated fadeInDown">
+        {% endif %}
+        </a>
       {% endif %}
       <h1 class="site-title animated fadeIn"><a href="{{ site.url }}/">{{ site.title }}</a></h1>
 		<h2 class="site-description animated fadeIn" itemprop="description">{{ site.description }}</h2>
