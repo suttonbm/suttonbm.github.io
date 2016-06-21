@@ -6,7 +6,7 @@ my_imgur_upload <- function(file) {
 }
 
 KnitPost <- function(input,
-                     base.url = "",
+                     base.url = "{{ site.url }}",
                      post.path = "_posts/")
 {
     require(knitr)

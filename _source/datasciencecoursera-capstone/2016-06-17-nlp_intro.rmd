@@ -1,0 +1,135 @@
+---
+title: "Natural Language Processing"
+author: "suttonbm"
+date: 2016-06-20
+author: suttonbm
+layout: post
+categories:
+  - projects
+tags:
+  - coursera
+  - data.science
+  - R
+project: datasciencecoursera.capstone
+excerpt: >
+  Reading notes for Natural Language Processing NLP
+---
+
+```{r echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE)
+
+require(knitcitations)
+bib.file <- "capstone-citations.bibtex"
+bib <- read.bibtex(bib.file)
+```
+
+## Introduction
+Today's goal is to take a look at the text corpus to be used in the capstone project, as well as to gain a working familiarity with natural language processing, or NLP.  Let's jump right in.
+
+The baseline data to be used in the capstone is a corpus called [HC Corpora](http://www.corpora.heliohost.org/).  Coursera/JHU have kindly made available a zip file containing corpora from English, German, Russian, and Finnish.  Each corpus contains data from blogs, news, and twitter.  Data is provided in a raw form - just text.  Any analysis will require some sort of preprocessing before anything useful can be done with the data.
+
+Small aside - I could see it being fun to repeat this whole project with a corpus of language derived from a show or something.  Would be fun to have a Captain Picard predictive keyboard...
+
+## Alternative/Additional Corpora
+There are quite a few additional corpora openly available on the web.  I'm not sure whether it will make sense to include these data in the analysis for this course.
+
+#### Google Books
+Google has some outrageously large quantity of books processed down into n-grams and available on the web for anyone to use.  I'm not sure how big the total corpus comes to, but I probably won't be making use of this just due to sheer size.
+[Google N-Grams Corpus](http://storage.googleapis.com/books/ngrams/books/datasetsv2.html)
+
+#### American National Corpus
+Another corpus that is a bit more reasonable in size is the American National Corpus, weighing in at 15 million words.  There's also a manually annotated corpus of 500,000 words available for use.
+[Open ANC](http://www.anc.org/data/oanc/download/)
+[MASC](http://www.anc.org/data/masc/downloads/)
+
+#### Brigham Young Corpus
+Brigham Young University also has a fairly large corpus freely available on the web:
+[BYU Corpus](http://corpus.byu.edu/full-text/)
+
+## Text Mining Preprocessing
+Preparing for text mining or analysis of a selected corpus is roughly a three-step process:
+
+  1. Obtain the data
+  2. Preprocess the data
+  3. Transform the data to a structured format
+
+Preprocessing the data aims to prepare the raw data for transformation.  Some common preprocessing steps may include:
+
+  * Whitespace removal
+  * Stopword removal
+  * Word stemming
+  * Punctuation removal
+
+Stopwords are defined as words which (generally) appear extremely frequently in the corpus and may provide little predictive information.  In other words, they appear in combination with many words, making it very difficult to do prediction with high accuracy.
+
+Word stemming is essentially clustering words with identical meaning but different suffixes, prefixes, etc.  For example, "ducks" and "duck" would be categorized as the same word.
+
+## Getting Started in R
+There are multiple frameworks in R providing language processing functionality.  However, for now I'm going to explore the `tm` package.
+
+> We present a text mining framework ... cetered around the new extension package `tm`.  This open source package ... provides the basic infrastructure necessary to organize, transform, and analyze textual data.
+```{r echo=FALSE, results='asis'}
+print(citep(bib[["JSSv025i05"]]))
+```
+
+#### The Data...
+I've created a sample data file containing the first 100 lines of the US news corpus from the [HC Corpora](http://www.corpora.heliohost.org/) for the express purpose of exploring the `tm` package's capabilities.  The whole corpus is quite large and would pose a challenge to quickly obtaining some example results.  The data I use below can be found on [Github](https://github.com/suttonbm/suttonbm.github.io/tree/master/_source/datasciencecoursera-capstone/en-US.news.sample.txt).
+
+#### Reading the Data
+Let's get started.  First thing to do is install packages:
+
+```{r eval=FALSE}
+install.packages("tm")
+```
+
+Next, we need to read in the data to be analyzed.  The `tm` package provides many different interfaces for reading in data.  In this case, we're just reading in a plain text file.
+
+```{r}
+US.news <- file.path("data")
+US.news
+
+library(tm)
+newsCorp <- Corpus(DirSource(US.news))
+```
+
+We can do some quick examination of the created corpus:
+
+```{r}
+as.character(newsCorp[[1]])[1:3]
+```
+
+The data has been read into a `Corpus` object.  The command above shows only the first three lines of the file.
+
+#### Preprocessing Data
+So now that our data is loaded into R, let's try some preprocessing.  The raw data may include extra whitespace or punctuation which could complicate or confuse the analysis.  Additionally, as discussed above, common words can be eliminated to simplify the dataset.
+
+##### Removal of Punctuation
+```{r}
+newsCorp <- tm_map(newsCorp, removePunctuation)
+as.character(newsCorp[[1]])[1:3]
+```
+
+##### Removal of Stopwords and Numbers
+```{r}
+newsCorp <- tm_map(newsCorp, removeWords, stopwords('english'))
+newsCorp <- tm_map(newsCorp, removeNumbers)
+as.character(newsCorp[[1]])[1:3]
+```
+
+##### Apply Stemming, Convert to Lowercase
+```{r}
+newsCorp <- tm_map(newsCorp, stemDocument)
+newsCorp <- tm_map(newsCorp, tolower)
+as.character(newsCorp[[1]])[1:3]
+```
+
+##### Removing Extra Whitespace
+```{r}
+newsCorp <- tm_map(newsCorp, stripWhitespace)
+as.character(newsCorp[[1]])[1:3]
+```
+
+### References
+```{r echo=FALSE, results="asis"}
+bibliography("html")
+```
