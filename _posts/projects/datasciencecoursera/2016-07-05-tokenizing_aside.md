@@ -128,7 +128,7 @@ words.df <- doEvaluate('tm.words', tm::TermDocumentMatrix)
 mc.df <- doEvaluate('tm.mc', tm::TermDocumentMatrix, control=list(tokenize=tm::MC_tokenizer))
 ```
 
-![center]({{ site.url }}http://i.imgur.com/GsiPXaA.png)![center]({{ site.url }}http://i.imgur.com/xpAHyqe.png)
+![center](http://i.imgur.com/GsiPXaA.png)![center](http://i.imgur.com/xpAHyqe.png)
 
 Based on the plots above, we can draw a few conclusions:
 
@@ -166,7 +166,7 @@ nlp.2.df <- doEvaluate('nlp.2-gram', tm::TermDocumentMatrix, control=list(tokeni
 nlp.3.df <- doEvaluate('nlp.3-gram', tm::TermDocumentMatrix, control=list(tokenize=bigram.nlp))
 ```
 
-![center]({{ site.url }}http://i.imgur.com/Oatxy4p.png)
+![center](http://i.imgur.com/Oatxy4p.png)
 
 The `NLP::ngrams` function operates slightly slower than the `words` method above, but still faster than the `MC` method.  The increase in time compared to `words` is not surprising due to the extra combinatorics of generating N-grams versus splitting on whitespace.  One interesting observation is that linear correlation to number of lines is less distinct.  I would hypothesize that the result depends on number of words per line, but I didn't gather the necessary data to confirm the result.  Another interesting observation is that generating 3-grams confers a much smaller penalty over 2-grams than does generating 2-grams over whitespace splitting.
 
@@ -212,7 +212,7 @@ rweka.2.df <- doEvaluate('RWeka.2-gram', tm::TermDocumentMatrix, control=list(to
 rweka.3.df <- doEvaluate('RWeka.3-gram', tm::TermDocumentMatrix, control=list(tokenize=trigram.rweka))
 ```
 
-![center]({{ site.url }}http://i.imgur.com/uvrsJoP.png)
+![center](http://i.imgur.com/uvrsJoP.png)
 
 We can see from the plots above that the RWeka tokenizer runs significantly slower than both the `words` tokenizer and the `NLP::ngrams` tokenizers above.  I don't fully understand what's going on under the hood of the RWeka package or the Weka tool in Java, so I'd have to theorize that there may be something going on algorithmically to cause such a slowdown.
 
@@ -258,346 +258,19 @@ qeda.dfm <- function(corpus, n=1) {
 
 # Evaluate 1-grams
 qeda.1.df <- doEvaluate.qeda('qeda.1-gram', n=1)
-```
 
-```
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 40,888 documents
-##    ... indexing features: 7,816 feature types
-##    ... created a 40888 x 7817 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.39 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 2,415 documents
-##    ... indexing features: 1,210 feature types
-##    ... created a 2415 x 1211 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.04 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 29,943 documents
-##    ... indexing features: 6,286 feature types
-##    ... created a 29943 x 6287 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.26 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 201,035 documents
-##    ... indexing features: 20,862 feature types
-##    ... created a 201035 x 20863 sparse dfm
-##    ... complete. 
-## Elapsed time: 2.17 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 14,359 documents
-##    ... indexing features: 4,363 feature types
-##    ... created a 14359 x 4364 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.15 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 150,488 documents
-##    ... indexing features: 17,649 feature types
-##    ... created a 150488 x 17650 sparse dfm
-##    ... complete. 
-## Elapsed time: 1.38 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 392,159 documents
-##    ... indexing features: 31,035 feature types
-##    ... created a 392159 x 31036 sparse dfm
-##    ... complete. 
-## Elapsed time: 4.31 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 27,683 documents
-##    ... indexing features: 6,926 feature types
-##    ... created a 27683 x 6927 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.25 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 299,020 documents
-##    ... indexing features: 26,830 feature types
-##    ... created a 299020 x 26831 sparse dfm
-##    ... complete. 
-## Elapsed time: 3.12 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 1,950,417 documents
-##    ... indexing features: 76,759 feature types
-##    ... created a 1950417 x 76760 sparse dfm
-##    ... complete. 
-## Elapsed time: 25.96 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 132,228 documents
-##    ... indexing features: 18,333 feature types
-##    ... created a 132228 x 18334 sparse dfm
-##    ... complete. 
-## Elapsed time: 1.13 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 1,493,181 documents
-##    ... indexing features: 71,248 feature types
-##    ... created a 1493181 x 71249 sparse dfm
-##    ... complete. 
-## Elapsed time: 17.77 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 262,628 documents
-##    ... indexing features: 27,201 feature types
-##    ... created a 262628 x 27202 sparse dfm
-##    ... complete. 
-## Elapsed time: 2.77 seconds.
-```
-
-```r
 # Evaluate 2-grams
 qeda.2.df <- doEvaluate.qeda('qeda.2-gram', n=2)
-```
 
-```
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 39,956 documents
-##    ... indexing features: 27,476 feature types
-##    ... created a 39956 x 27477 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.38 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 2,337 documents
-##    ... indexing features: 2,132 feature types
-##    ... created a 2337 x 2133 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.03 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 27,527 documents
-##    ... indexing features: 20,509 feature types
-##    ... created a 27527 x 20510 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.26 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 196,461 documents
-##    ... indexing features: 108,186 feature types
-##    ... created a 196461 x 108187 sparse dfm
-##    ... complete. 
-## Elapsed time: 2.3 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 13,946 documents
-##    ... indexing features: 11,573 feature types
-##    ... created a 13946 x 11574 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.12 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 138,441 documents
-##    ... indexing features: 82,573 feature types
-##    ... created a 138441 x 82574 sparse dfm
-##    ... complete. 
-## Elapsed time: 1.69 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 383,152 documents
-##    ... indexing features: 189,075 feature types
-##    ... created a 383152 x 189076 sparse dfm
-##    ... complete. 
-## Elapsed time: 4.42 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 26,875 documents
-##    ... indexing features: 21,105 feature types
-##    ... created a 26875 x 21106 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.25 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 275,206 documents
-##    ... indexing features: 146,612 feature types
-##    ... created a 275206 x 146613 sparse dfm
-##    ... complete. 
-## Elapsed time: 3.5 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 1,905,243 documents
-##    ... indexing features: 683,951 feature types
-##    ... created a 1905243 x 683952 sparse dfm
-##    ... complete. 
-## Elapsed time: 29.03 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 128,389 documents
-##    ... indexing features: 84,697 feature types
-##    ... created a 128389 x 84698 sparse dfm
-##    ... complete. 
-## Elapsed time: 1.13 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 1,374,509 documents
-##    ... indexing features: 540,160 feature types
-##    ... created a 1374509 x 540161 sparse dfm
-##    ... complete. 
-## Elapsed time: 18.5 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 254,863 documents
-##    ... indexing features: 151,667 feature types
-##    ... created a 254863 x 151668 sparse dfm
-##    ... complete. 
-## Elapsed time: 2.78 seconds.
-```
-
-```r
 # Evaluate 3-grams
 qeda.3.df <- doEvaluate.qeda('qeda.3-gram', n=3)
 ```
 
-```
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 39,048 documents
-##    ... indexing features: 35,989 feature types
-##    ... created a 39048 x 35990 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.39 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 2,260 documents
-##    ... indexing features: 2,215 feature types
-##    ... created a 2260 x 2216 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.02 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 25,112 documents
-##    ... indexing features: 24,124 feature types
-##    ... created a 25112 x 24125 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.25 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 191,981 documents
-##    ... indexing features: 167,578 feature types
-##    ... created a 191981 x 167579 sparse dfm
-##    ... complete. 
-## Elapsed time: 1.99 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 13,535 documents
-##    ... indexing features: 13,182 feature types
-##    ... created a 13535 x 13183 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.15 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 126,403 documents
-##    ... indexing features: 114,459 feature types
-##    ... created a 126403 x 114460 sparse dfm
-##    ... complete. 
-## Elapsed time: 1.29 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 374,329 documents
-##    ... indexing features: 314,885 feature types
-##    ... created a 374329 x 314886 sparse dfm
-##    ... complete. 
-## Elapsed time: 4.24 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 26,071 documents
-##    ... indexing features: 25,202 feature types
-##    ... created a 26071 x 25203 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.27 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 251,407 documents
-##    ... indexing features: 219,322 feature types
-##    ... created a 251407 x 219323 sparse dfm
-##    ... complete. 
-## Elapsed time: 2.91 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 1,860,988 documents
-##    ... indexing features: 1,383,713 feature types
-##    ... created a 1860988 x 1383714 sparse dfm
-##    ... complete. 
-## Elapsed time: 25.72 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 124,571 documents
-##    ... indexing features: 115,941 feature types
-##    ... created a 124571 x 115942 sparse dfm
-##    ... complete. 
-## Elapsed time: 1.3 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 1,255,898 documents
-##    ... indexing features: 970,944 feature types
-##    ... created a 1255898 x 970945 sparse dfm
-##    ... complete. 
-## Elapsed time: 16.44 seconds.
-## 
-##    ... lowercasing
-##    ... tokenizing
-##    ... indexing documents: 247,147 documents
-##    ... indexing features: 223,755 feature types
-##    ... created a 247147 x 223756 sparse dfm
-##    ... complete. 
-## Elapsed time: 2.91 seconds.
-```
-
-![center]({{ site.url }}http://i.imgur.com/3qtZdZ2.png)
+![center](http://i.imgur.com/3qtZdZ2.png)
 
 While the `quanteda` package does not appear to provide a significant benefit over the base `words` approach, it does appear to provide consistent results regardless of n-gram selection.  Splitting on whitespace takes approximately the same time as generating 2- and 3-gram data.
 
 ### Summary
-
-
 
 In conclusion, I've studied the processing times for a variety of tokenizing packages and algorithms available in R today. The results show fairly wide variation in performance, with the `RWeka` and `tm::MC_tokenizer` options significantly underperforming the field.  For small datasets, it would appear the tools available in the `tm` and `NLP` packages are the most effective, but for larger datasets or N-gram data with N>1, the `quanteda` package may be the better choice.
 
@@ -621,7 +294,7 @@ Cambridge University Press, 2011, pp. 1&ndash;17.
 ISBN: 9781139058452.
 URL: <a href="http://dx.doi.org/10.1017/CBO9781139058452.002">http://dx.doi.org/10.1017/CBO9781139058452.002</a>.</cite></p>
 
-[1](https://rpubs.com/erodriguez/nlpquanteda)
-[2](http://stackoverflow.com/questions/21921422/row-sum-for-large-term-document-matrix-simple-triplet-matrix-tm-package)
+[3](https://rpubs.com/erodriguez/nlpquanteda)
+[4](http://stackoverflow.com/questions/21921422/row-sum-for-large-term-document-matrix-simple-triplet-matrix-tm-package)
 
 

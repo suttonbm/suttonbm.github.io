@@ -31,12 +31,11 @@ I discussed generating a subsample of the text corpora used in the course in an 
 
 
 ```r
-data.sample.path <- "data/en-US.all.sampled.txt"
-data.sample <- readLines(data.sample.path)
-```
+sample.1 <- readLines("data/en_US.blogs.txt.0.005", encoding="UTF-8")
+sample.2 <- readLines("data/en_US.news.txt.0.005", encoding="UTF-8")
+sample.3 <- readLines("data/en_US.twitter.txt.0.005", encoding="UTF-8")
 
-```
-## Error in file(con, "r"): cannot open the connection
+data.sample <- c(sample.1, sample.2, sample.3)
 ```
 
 Next, we need to clean up the data. The strict definition above is to eliminate profanity if possible.  However, when doing natural language processing, we also need to consider predictive ability of words and eliminate those with low entropy (stopwords).
@@ -49,18 +48,11 @@ Both of these activities can be addressed using the `tm` package in R.  First, l
 library(tm)
 
 sample_corpus <- Corpus(VectorSource(data.sample))
+iconv(as.character(sample_corpus[[6]]), to="ASCII")
 ```
 
 ```
-## Error in SimpleSource(length = length(x), content = x, class = "VectorSource"): object 'data.sample' not found
-```
-
-```r
-as.character(sample_corpus[[6]])
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'sample_corpus' not found
+## [1] "If you are interested in the national private midwifery scene, or trying to locate a midwife outside Victoria, please go to the APMA blog."
 ```
 
 Using the corpus object within the `tm` package, we can perform some basic operations to clean up the data before splitting into tokens:
@@ -69,36 +61,22 @@ Using the corpus object within the `tm` package, we can perform some basic opera
 ```r
 # Eliminate punctuation marks
 sample_corpus <- tm_map(sample_corpus, removePunctuation)
-```
-
-```
-## Error in tm_map(sample_corpus, removePunctuation): object 'sample_corpus' not found
-```
-
-```r
 # Eliminate numbers
 sample_corpus <- tm_map(sample_corpus, removeNumbers)
-```
-
-```
-## Error in tm_map(sample_corpus, removeNumbers): object 'sample_corpus' not found
-```
-
-```r
 # Convert to lowercase
 sample_corpus <- tm_map(sample_corpus, content_transformer(tolower))
 ```
 
 ```
-## Error in tm_map(sample_corpus, content_transformer(tolower)): object 'sample_corpus' not found
+## Error in FUN(content(x), ...): invalid input 'Time to dream bout some crazy ishhh goodnight 💤' in 'utf8towcs'
 ```
 
 ```r
-as.character(sample_corpus[[6]])
+iconv(as.character(sample_corpus[[6]]), to="ASCII")
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'sample_corpus' not found
+## [1] "If you are interested in the national private midwifery scene or trying to locate a midwife outside Victoria please go to the APMA blog"
 ```
 
 The `tm` package provides a convenient method of removing words from a corpus by using another data source.  For example:
@@ -122,36 +100,18 @@ To filter out profanity in the corpus, I forked a [gist](https://gist.github.com
 ```r
 expletives <- VectorSource(readLines("data/expletives-coursera-swiftkey-nlp"))
 sample_corpus <- tm_map(sample_corpus, removeWords, expletives$content)
-```
 
-```
-## Error in tm_map(sample_corpus, removeWords, expletives$content): object 'sample_corpus' not found
-```
-
-```r
 # And removing stopwords
 sample_corpus <- tm_map(sample_corpus, removeWords, stopwords("english"))
-```
 
-```
-## Error in tm_map(sample_corpus, removeWords, stopwords("english")): object 'sample_corpus' not found
-```
-
-```r
 # Finally, strip excess whitespace
 sample_corpus <- tm_map(sample_corpus, stripWhitespace)
+
+iconv(as.character(sample_corpus[[6]]), to="ASCII")
 ```
 
 ```
-## Error in tm_map(sample_corpus, stripWhitespace): object 'sample_corpus' not found
-```
-
-```r
-as.character(sample_corpus[[6]])
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'sample_corpus' not found
+## [1] "If interested national private midwifery scene trying locate midwife outside Victoria please go APMA blog"
 ```
 
 In theory, now the corpus has had all expletives and english stopwords removed. Note how the printed line has changed between raw data import and pre-processing/cleaning.
@@ -162,25 +122,21 @@ Now that I have a (reasonably) clean dataset, I need to split it into tokens.  I
 
 
 ```r
-(sample_line <- strsplit(as.character(sample_corpus[[6]]), "\\s+"))
+(sample_line <- strsplit(iconv(as.character(sample_corpus[[6]]), to="ASCII"),
+                         "\\s+"))
 ```
 
 ```
-## Error in strsplit(as.character(sample_corpus[[6]]), "\\s+"): object 'sample_corpus' not found
+## [[1]]
+##  [1] "If"         "interested" "national"   "private"    "midwifery" 
+##  [6] "scene"      "trying"     "locate"     "midwife"    "outside"   
+## [11] "Victoria"   "please"     "go"         "APMA"       "blog"
 ```
 
 However, this may not be the best method of summarizing the data.  We'll explore this further in the [next post]({{ base_url }}/2016/07/nlp_data_exploration)
 
 ### References
-<p><a id='bib-JSSv025i05'></a><a href="#cite-JSSv025i05">[1]</a><cite>
-I. Feinerer, K. Hornik and D. Meyer.
-&ldquo;Text Mining Infrastructure in R&rdquo;.
-In: <em>Journal of Statistical Software</em> 25.1 (2008), pp. 1&ndash;54.
-ISSN: 1548-7660.
-DOI: <a href="http://dx.doi.org/10.18637/jss.v025.i05">10.18637/jss.v025.i05</a>.
-URL: <a href="https://www.jstatsoft.org/index.php/jss/article/view/v025i05">https://www.jstatsoft.org/index.php/jss/article/view/v025i05</a>.</cite></p>
-
-<p><a id='bib-CBO9781139058452A007'></a><a href="#cite-CBO9781139058452A007">[2]</a><cite>
+<p><a id='bib-CBO9781139058452A007'></a><a href="#cite-CBO9781139058452A007">[1]</a><cite>
 A. Rajaraman and J. D. Ullman.
 &ldquo;Data Mining&rdquo;.
 In: 

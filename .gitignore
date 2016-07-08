@@ -4,3 +4,7 @@ _site
 .jekyll-metadata
 _posts/temp
 images
+_source/datasciencecoursera-capstone/data
+.Rhistory
+.RData
+_config.yml
