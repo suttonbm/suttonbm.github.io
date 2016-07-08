@@ -6,6 +6,7 @@ description: Just another Jekyll blog...
 logo: http://i.imgur.com/EwQWCNf.png
 search: true
 url: https://suttonbm.github.io
+encoding: UTF-8
 
 # Jekyll configuration
 
