@@ -5,7 +5,6 @@ locale: en_US
 description: Just another Jekyll blog...
 logo: http://i.imgur.com/EwQWCNf.png
 search: true
-#url: http://localhost:4000
 url: https://suttonbm.github.io
 
 # Jekyll configuration
