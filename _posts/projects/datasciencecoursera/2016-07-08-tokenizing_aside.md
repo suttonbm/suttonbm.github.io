@@ -11,7 +11,7 @@ tags:
   - R
 project: datasciencecoursera.capstone
 excerpt: >
-  Aside: Efficient tokenizing strategy for NLP in R
+  Aside - efficient tokenizing strategy for NLP in R
 ---
 
 
@@ -128,7 +128,7 @@ words.df <- doEvaluate('tm.words', tm::TermDocumentMatrix)
 mc.df <- doEvaluate('tm.mc', tm::TermDocumentMatrix, control=list(tokenize=tm::MC_tokenizer))
 ```
 
-![center](http://i.imgur.com/GsiPXaA.png)![center](http://i.imgur.com/xpAHyqe.png)
+![center](http://i.imgur.com/J2hrwLR.png)![center](http://i.imgur.com/EtlZ0kN.png)
 
 Based on the plots above, we can draw a few conclusions:
 
@@ -166,7 +166,7 @@ nlp.2.df <- doEvaluate('nlp.2-gram', tm::TermDocumentMatrix, control=list(tokeni
 nlp.3.df <- doEvaluate('nlp.3-gram', tm::TermDocumentMatrix, control=list(tokenize=bigram.nlp))
 ```
 
-![center](http://i.imgur.com/Oatxy4p.png)
+![center](http://i.imgur.com/iYuk9kB.png)
 
 The `NLP::ngrams` function operates slightly slower than the `words` method above, but still faster than the `MC` method.  The increase in time compared to `words` is not surprising due to the extra combinatorics of generating N-grams versus splitting on whitespace.  One interesting observation is that linear correlation to number of lines is less distinct.  I would hypothesize that the result depends on number of words per line, but I didn't gather the necessary data to confirm the result.  Another interesting observation is that generating 3-grams confers a much smaller penalty over 2-grams than does generating 2-grams over whitespace splitting.
 
@@ -175,9 +175,6 @@ The `NLP::ngrams` function operates slightly slower than the `words` method abov
 Similar to the NLP package, the RWeka package provides a number of external tokenizer functions which perform a similar function to the NLP package above.  In this case, however, the tokenizing occurs in Java, outside of the R environment.  We can define bigram and trigram generating functions as follows:
 
 
-```
-## [1] 0
-```
 
 
 ```r
@@ -212,13 +209,13 @@ rweka.2.df <- doEvaluate('RWeka.2-gram', tm::TermDocumentMatrix, control=list(to
 rweka.3.df <- doEvaluate('RWeka.3-gram', tm::TermDocumentMatrix, control=list(tokenize=trigram.rweka))
 ```
 
-![center](http://i.imgur.com/uvrsJoP.png)
+![center](http://i.imgur.com/Osc1MgO.png)
 
 We can see from the plots above that the RWeka tokenizer runs significantly slower than both the `words` tokenizer and the `NLP::ngrams` tokenizers above.  I don't fully understand what's going on under the hood of the RWeka package or the Weka tool in Java, so I'd have to theorize that there may be something going on algorithmically to cause such a slowdown.
 
 ### Quanteda Performance
 
-The final package I'll evaluate is the `quanteda` package. This package works independently of the `tm` package, and requires a different type of input to tokenize the data. Luckily, the package provides a constructor for the `quanteda::corpus` class which takes a `tm::VCorpus` as an input.  In order to eliminate any timing bias due to this translation, we'll have to update the `parallelTask()` and `doEvaluate()` functions, as well as the underlying data.  I've left out the full code for brevity, but the source can be found on [Github](#).
+The final package I'll evaluate is the `quanteda` package. This package works independently of the `tm` package, and requires a different type of input to tokenize the data. Luckily, the package provides a constructor for the `quanteda::corpus` class which takes a `tm::VCorpus` as an input.  In order to eliminate any timing bias due to this translation, we'll have to update the `parallelTask()` and `doEvaluate()` functions, as well as the underlying data.  I've left out the full code for brevity, but the source can be found on [Github](https://github.com/suttonbm/datasciencecoursera_Capstone/blob/master/2016-07-05-tokenizing_aside.rmd).
 
 The creation of a `quanteda::corpus` can be handled with the following R code:
 
@@ -238,7 +235,8 @@ makeSentences <- function(input) {
                             removeNumbers = TRUE,
                             removePunct = TRUE,
                             removeSeparators = TRUE,
-                            removeTwitter = TRUE)
+                            removeTwitter = TRUE,
+                            verbose = FALSE)
   unlist(lapply(out, function(x) paste(quanteda::toLower(x))))
 }
 ```
@@ -266,24 +264,51 @@ qeda.2.df <- doEvaluate.qeda('qeda.2-gram', n=2)
 qeda.3.df <- doEvaluate.qeda('qeda.3-gram', n=3)
 ```
 
-![center](http://i.imgur.com/3qtZdZ2.png)
+
+```
+## Error in rbind(qeda.1.df, qeda.2.df, qeda.3.df, words.df): object 'qeda.1.df' not found
+```
 
 While the `quanteda` package does not appear to provide a significant benefit over the base `words` approach, it does appear to provide consistent results regardless of n-gram selection.  Splitting on whitespace takes approximately the same time as generating 2- and 3-gram data.
 
 ### Summary
 
+
+```
+## Error in rbind(words.df, mc.df, nlp.2.df, nlp.3.df, rweka.1.df, rweka.2.df, : object 'qeda.1.df' not found
+```
+
 In conclusion, I've studied the processing times for a variety of tokenizing packages and algorithms available in R today. The results show fairly wide variation in performance, with the `RWeka` and `tm::MC_tokenizer` options significantly underperforming the field.  For small datasets, it would appear the tools available in the `tm` and `NLP` packages are the most effective, but for larger datasets or N-gram data with N>1, the `quanteda` package may be the better choice.
 
-### References
-<p><a id='bib-JSSv025i05'></a><a href="#cite-JSSv025i05">[1]</a><cite>
-I. Feinerer, K. Hornik and D. Meyer.
-&ldquo;Text Mining Infrastructure in R&rdquo;.
-In: <em>Journal of Statistical Software</em> 25.1 (2008), pp. 1&ndash;54.
-ISSN: 1548-7660.
-DOI: <a href="http://dx.doi.org/10.18637/jss.v025.i05">10.18637/jss.v025.i05</a>.
-URL: <a href="https://www.jstatsoft.org/index.php/jss/article/view/v025i05">https://www.jstatsoft.org/index.php/jss/article/view/v025i05</a>.</cite></p>
+### A Small Addition
 
-<p><a id='bib-CBO9781139058452A007'></a><a href="#cite-CBO9781139058452A007">[2]</a><cite>
+I ran this benchmark a few different times while figuring out how each of the packages worked; after completing the post, I ran the whole thing on two different computers to investigate the impact of processing power.  Just for funzies.  The two computers are specced as follows:
+
+Spec      |          Computer 1          |   Computer 2  
+----------|------------------------------|------------------------------
+Processor | Intel Core i5-6400 @ 2.7 GHz | Intel Core i7-3687U @ 2.1 GHz
+Memory    | 16G Corsair DDR4 2133        | 8G (Unknown Brand/Speed)
+
+A quick comparison of tm.words:
+
+
+```r
+desktop <- read.table("data/desktop-tokens-perf.tab")
+laptop <- read.table("data/laptop-tokens-perf.tab")
+desktop$type <- "desktop"
+laptop$type <- "laptop"
+
+perfData <- rbind(desktop, laptop)
+
+ggplot(data=perfData[perfData$method == 'tm.words', ],
+       aes(x=file.lines, y=perf, colour=type)) +
+  geom_point()
+```
+
+![center](http://i.imgur.com/ib4kSio.png)
+
+### References
+<p><a id='bib-CBO9781139058452A007'></a><a href="#cite-CBO9781139058452A007">[1]</a><cite>
 A. Rajaraman and J. D. Ullman.
 &ldquo;Data Mining&rdquo;.
 In: 
@@ -294,7 +319,7 @@ Cambridge University Press, 2011, pp. 1&ndash;17.
 ISBN: 9781139058452.
 URL: <a href="http://dx.doi.org/10.1017/CBO9781139058452.002">http://dx.doi.org/10.1017/CBO9781139058452.002</a>.</cite></p>
 
-[3](https://rpubs.com/erodriguez/nlpquanteda)
-[4](http://stackoverflow.com/questions/21921422/row-sum-for-large-term-document-matrix-simple-triplet-matrix-tm-package)
+[1](https://rpubs.com/erodriguez/nlpquanteda)
+[2](http://stackoverflow.com/questions/21921422/row-sum-for-large-term-document-matrix-simple-triplet-matrix-tm-package)
 
 

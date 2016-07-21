@@ -101,7 +101,8 @@ So we have a huge number of lines in both data files.  While I could arbitrarily
 
 
 ```r
-# Calculate the proportion of lines to select from the blog corpus to yield approximately 5000 lines
+# Calculate the proportion of lines to select from the blog corpus to yield
+# approximately 5000 lines
 p.sample <- 5000 / data.blog.nLines
 
 # Set seed and generate a vector of bernoulli trials for each corpus
@@ -144,6 +145,10 @@ writeLines(twit.sample, "data/en-US.twitter.sampled.txt")
 
 
 We now have a single dataset, `data`, which contains 0.11% of the lines from all three corpora.  This new, sampled dataset is what we'll use to develop algorithms for cleaning and tokenizing data.
+
+##### Update:
+
+I extended my analysis with a more thorough investigation into the trade-offs associated with using sampled data in [a new post]({{ base.url }}/2016/07/nlp_sampling_updated/)
 
 ### References
 <p><a id='bib-JSSv025i05'></a><a href="#cite-JSSv025i05">[1]</a><cite>

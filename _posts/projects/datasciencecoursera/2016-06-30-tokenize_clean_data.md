@@ -31,11 +31,15 @@ I discussed generating a subsample of the text corpora used in the course in an 
 
 
 ```r
+source("script/loadCorpusFromFile.R")
+
 sample.1 <- readLines("data/en_US.blogs.txt.0.005", encoding="UTF-8")
 sample.2 <- readLines("data/en_US.news.txt.0.005", encoding="UTF-8")
 sample.3 <- readLines("data/en_US.twitter.txt.0.005", encoding="UTF-8")
 
 data.sample <- c(sample.1, sample.2, sample.3)
+
+data.sample <- unlist(lapply(data.sample, removeSpecialCharacters))
 ```
 
 Next, we need to clean up the data. The strict definition above is to eliminate profanity if possible.  However, when doing natural language processing, we also need to consider predictive ability of words and eliminate those with low entropy (stopwords).
@@ -52,7 +56,7 @@ iconv(as.character(sample_corpus[[6]]), to="ASCII")
 ```
 
 ```
-## [1] "If you are interested in the national private midwifery scene, or trying to locate a midwife outside Victoria, please go to the APMA blog."
+## [1] "perhaps  it would be a good move for labour to adopt a more mature attitude of a similar spirit  sort out which message it wants to get out and act in a more constructive manner and work with the government to find a solution. at the moment the labour party appears opportunistic  not only on policy relating to income  tax evasion and charity giving but on a range of issues. labour needs to start showing itself as a credible alternative as a government rather than an anti coalition party. or maybe that's their election strategy and they'll just fill in miliband's blank sheet of paper if and when he gets into number    "
 ```
 
 Using the corpus object within the `tm` package, we can perform some basic operations to clean up the data before splitting into tokens:
@@ -65,18 +69,12 @@ sample_corpus <- tm_map(sample_corpus, removePunctuation)
 sample_corpus <- tm_map(sample_corpus, removeNumbers)
 # Convert to lowercase
 sample_corpus <- tm_map(sample_corpus, content_transformer(tolower))
-```
 
-```
-## Error in FUN(content(x), ...): invalid input 'Time to dream bout some crazy ishhh goodnight 💤' in 'utf8towcs'
-```
-
-```r
 iconv(as.character(sample_corpus[[6]]), to="ASCII")
 ```
 
 ```
-## [1] "If you are interested in the national private midwifery scene or trying to locate a midwife outside Victoria please go to the APMA blog"
+## [1] "perhaps  it would be a good move for labour to adopt a more mature attitude of a similar spirit  sort out which message it wants to get out and act in a more constructive manner and work with the government to find a solution at the moment the labour party appears opportunistic  not only on policy relating to income  tax evasion and charity giving but on a range of issues labour needs to start showing itself as a credible alternative as a government rather than an anti coalition party or maybe thats their election strategy and theyll just fill in milibands blank sheet of paper if and when he gets into number    "
 ```
 
 The `tm` package provides a convenient method of removing words from a corpus by using another data source.  For example:
@@ -111,7 +109,7 @@ iconv(as.character(sample_corpus[[6]]), to="ASCII")
 ```
 
 ```
-## [1] "If interested national private midwifery scene trying locate midwife outside Victoria please go APMA blog"
+## [1] "perhaps good move labour adopt mature attitude similar spirit sort message wants get act constructive manner work government find solution moment labour party appears opportunistic policy relating income tax evasion charity giving range issues labour needs start showing credible alternative government rather anti coalition party maybe thats election strategy theyll just fill milibands blank sheet paper gets number "
 ```
 
 In theory, now the corpus has had all expletives and english stopwords removed. Note how the printed line has changed between raw data import and pre-processing/cleaning.
@@ -128,12 +126,24 @@ Now that I have a (reasonably) clean dataset, I need to split it into tokens.  I
 
 ```
 ## [[1]]
-##  [1] "If"         "interested" "national"   "private"    "midwifery" 
-##  [6] "scene"      "trying"     "locate"     "midwife"    "outside"   
-## [11] "Victoria"   "please"     "go"         "APMA"       "blog"
+##  [1] "perhaps"       "good"          "move"          "labour"       
+##  [5] "adopt"         "mature"        "attitude"      "similar"      
+##  [9] "spirit"        "sort"          "message"       "wants"        
+## [13] "get"           "act"           "constructive"  "manner"       
+## [17] "work"          "government"    "find"          "solution"     
+## [21] "moment"        "labour"        "party"         "appears"      
+## [25] "opportunistic" "policy"        "relating"      "income"       
+## [29] "tax"           "evasion"       "charity"       "giving"       
+## [33] "range"         "issues"        "labour"        "needs"        
+## [37] "start"         "showing"       "credible"      "alternative"  
+## [41] "government"    "rather"        "anti"          "coalition"    
+## [45] "party"         "maybe"         "thats"         "election"     
+## [49] "strategy"      "theyll"        "just"          "fill"         
+## [53] "milibands"     "blank"         "sheet"         "paper"        
+## [57] "gets"          "number"
 ```
 
-However, this may not be the best method of summarizing the data.  We'll explore this further in the [next post]({{ base_url }}/2016/07/nlp_data_exploration)
+However, this may not be the best method of summarizing the data.  We'll explore this further in the [next post]({{ base_url }}/2016/07/nlp_data_exploration/)
 
 ### References
 <p><a id='bib-CBO9781139058452A007'></a><a href="#cite-CBO9781139058452A007">[1]</a><cite>
