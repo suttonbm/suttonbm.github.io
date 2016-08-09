@@ -3,10 +3,11 @@
 title: Random Stuff
 locale: en_US
 description: Just another Jekyll blog...
-logo: http://i.imgur.com/EwQWCNf.png
+logo: http://i.imgur.com/d3d6v8s.png
 search: true
 url: https://suttonbm.github.io
 encoding: UTF-8
+comments: true
 
 # Jekyll configuration
 
@@ -38,14 +39,14 @@ exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.
 # Site owner
 owner:
   name: Ben Sutton
-  avatar: http://i.imgur.com/cxLOLZh.png
-  email: suttonbm@gmail.com
-  disqus-shortname:
+  avatar: http://i.imgur.com/tce1To6.png
+  email: suttonbm+githubBlog@gmail.com
+  disqus-shortname: suttonbm.github.io
   twitter: #username
   facebook: #username
   github: suttonbm
   stackexchange: #http://stackoverflow.com/users/123456/username
-  linkedin: #username
+  linkedin: suttonbm
   instagram: #username
   flickr: #username
   tumblr: #username
