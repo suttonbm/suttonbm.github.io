@@ -45,20 +45,22 @@ source("script/generateFeaturesDF.R")
 
 dataFile <- "data/en_US.blogs.txt.0.001"
 corpus <- loadCorpusFromFile(dataFile)
-tokens <- generateNGrams(corpus, n=1)
-words.df <- generateFeaturesDF(tokens)
 ```
 
 ```
-## 
-##    ... indexing documents: 2,295 documents
-##    ... indexing features: 6,833 feature types
-##    ... created a 2295 x 6834 sparse dfm
-##    ... complete. 
-## Elapsed time: 0.11 seconds.
+## [1] "Loading data from file..."
+## [1] "Removing special characters..."
+## [1] "Tokenizing..."
+## [1] "Removing expletives..."
+## [1] "Processing contractions..."
+## [1] "Removing unknown words..."
+## [1] "Applying sentence recognition..."
 ```
 
 ```r
+tokens <- generateNGrams(corpus, n=1)
+words.df <- generateFeaturesDF(tokens)
+
 head(words.df)
 ```
 
@@ -69,7 +71,7 @@ head(words.df)
 ## 3   the  1882
 ## 4   and  1093
 ## 5    to  1009
-## 6 <UNK>  1007
+## 6     i   888
 ```
 
 The first two terms are special terms indicating the start and end of the sentence, and `<UNK>` indicates a word that was not recognized as an english word in the corpus.  If we throw out these special terms, the top five most frequent words in the corpus are:
@@ -84,27 +86,52 @@ head(words.df, 5)
 
 ```
 ##   ngram count rank  pct.total
-## 3   the  1882    1 0.05199182
-## 4   and  1093    2 0.03019504
-## 5    to  1009    3 0.02787447
-## 7     a   884    4 0.02442124
-## 8    of   851    5 0.02350959
+## 3   the  1882    1 0.05106083
+## 4   and  1093    2 0.02965435
+## 5    to  1009    3 0.02737533
+## 6     i   888    4 0.02409246
+## 7     a   884    5 0.02398394
 ```
 
 For a randomly selected sentence fragment, if we predict that the next word is one of the top five words in this list, we would expect to be correct about 16% of the time.  Not bad for a model which makes the same prediction every time.  We can verify with a quick simulation over 0.1% of the blogs corpus:
 
 
 ```r
-source('script/testPrediction.R')
-testFile <- 'data/testData.proc.txt'
-
-result <- testPrediction(testFile, nLines=50, n=5, method='dumbDictPredict')
-result['accuracy']
+source('script/predictFromString.R')
+source('script/benchmark.R')
 ```
 
 ```
-## $accuracy
-## [1] 0.1666667
+## Note: no visible binding for global variable 'list.name' 
+## Note: no visible binding for global variable 'score' 
+## Note: no visible binding for global variable 'max.score' 
+## Note: no visible binding for global variable 'hit.count.top5' 
+## Note: no visible binding for global variable 'total.count' 
+## Note: no visible binding for global variable 'hit.count.top3' 
+## Note: no visible binding for global variable 'total.count' 
+## Note: no visible binding for global variable 'hit.count.top1' 
+## Note: no visible binding for global variable 'total.count' 
+## Note: no visible binding for global variable 'total.runtime' 
+## Note: no visible binding for global variable 'total.count' 
+## Note: no visible binding for global variable 'total.count'
+```
+
+```r
+benchmark(predictFromInts, method='dumbDict')
+```
+
+```
+## Overall top-5 score:     12.27 %
+## Overall top-1 precision: 0.00 %
+## Overall top-3 precision: 14.20 %
+## Overall top-5 precision: 20.50 %
+## Average runtime:         2.44 msec
+## Number of predictions:   634
+## Total memory used:       4.40 MB
+## 
+## Dataset details
+##  Dataset "data" (51 lines, 838 words, hash c1bb1c56b0c4a151f92ab57279c930a21db643389b99485dccc15caec7daa9ff)
+##   Score: 12.27 %, Top-1 precision: 0.00 %, Top-3 precision: 14.20 %, Top-5 precision: 20.50 %
 ```
 
 Although the result is slightly worse than predicted, it is still remarkably good considering our data frame includes over 6800 different words! Plus, this establishes a good baseline to compare against for future models.
@@ -129,21 +156,39 @@ Let's take a look at how prediction accuracy is affected by using one (bigram) o
 
 
 ```r
-result.bigram <- testPrediction(testFile, nLines=50, n=5, method='dumbBigram')
-result.bigram[['accuracy']]
+benchmark(predictFromInts, method='dumbBigram')
 ```
 
 ```
-## [1] 0.03333333
+## Overall top-5 score:     3.85 %
+## Overall top-1 precision: 1.58 %
+## Overall top-3 precision: 4.26 %
+## Overall top-5 precision: 5.36 %
+## Average runtime:         133.97 msec
+## Number of predictions:   634
+## Total memory used:       4.40 MB
+## 
+## Dataset details
+##  Dataset "data" (51 lines, 838 words, hash c1bb1c56b0c4a151f92ab57279c930a21db643389b99485dccc15caec7daa9ff)
+##   Score: 3.85 %, Top-1 precision: 1.58 %, Top-3 precision: 4.26 %, Top-5 precision: 5.36 %
 ```
 
 ```r
-result.trigram <- testPrediction(testFile, nLines=50, n=5, method='dumbTrigram')
-result.trigram[['accuracy']]
+benchmark(predictFromInts, method='dumbTrigram')
 ```
 
 ```
-## [1] 0
+## Overall top-5 score:     0.60 %
+## Overall top-1 precision: 0.00 %
+## Overall top-3 precision: 0.95 %
+## Overall top-5 precision: 0.95 %
+## Average runtime:         368.17 msec
+## Number of predictions:   634
+## Total memory used:       4.40 MB
+## 
+## Dataset details
+##  Dataset "data" (51 lines, 838 words, hash c1bb1c56b0c4a151f92ab57279c930a21db643389b99485dccc15caec7daa9ff)
+##   Score: 0.60 %, Top-1 precision: 0.00 %, Top-3 precision: 0.95 %, Top-5 precision: 0.95 %
 ```
 
 Uh-oh, looks like something went wrong.  Intuitively, one would think that using a bigram or trigram model would improve performance.  We're capturing *some* context, so what is going on?  The problem is **data sparsity**.  The training data used is simply not large enough to accurately represent the language.  We'll discuss this issue further in a [future post]({{ base.url }}/2016/08/nlp_data_smoothing/).
@@ -160,12 +205,21 @@ The resulting performance:
 
 
 ```r
-result.sbo <- testPrediction(testFile, nLines=50, n=5, method='sbo')
-result.sbo[['accuracy']]
+benchmark(predictFromInts, method='sbo')
 ```
 
 ```
-## [1] 0
+## Overall top-5 score:     3.75 %
+## Overall top-1 precision: 1.42 %
+## Overall top-3 precision: 4.26 %
+## Overall top-5 precision: 5.36 %
+## Average runtime:         934.20 msec
+## Number of predictions:   634
+## Total memory used:       4.40 MB
+## 
+## Dataset details
+##  Dataset "data" (51 lines, 838 words, hash c1bb1c56b0c4a151f92ab57279c930a21db643389b99485dccc15caec7daa9ff)
+##   Score: 3.75 %, Top-1 precision: 1.42 %, Top-3 precision: 4.26 %, Top-5 precision: 5.36 %
 ```
 
 Unfortunately, it doesn't look like this method is working either.  The best explanation I have is sparsity, so that's what I'll have to try and address next!
