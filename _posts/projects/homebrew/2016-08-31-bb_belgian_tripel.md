@@ -142,15 +142,20 @@ Anyways, that's all for now on this brew, will be back with updates after rackin
 
 ![center](http://i.imgur.com/jUgLgy0.jpg)
 
+### Update - 9/1/2016
+Removed the fermenter from the swamp cooler setup today.
+
 ### Update - 9/6/2016
 Well, I finally broke down and got a hydrometer.  I read enough stories about bottle bombs resulting from incomplete fermentation, and enough stories about incomplete fermentation with this recipe, that I had to do it.  Turns out I had nothing to worry about, though.  SG turned out ~1.013, right around the targeted final gravity.  I'll check again in another few days to make sure it's not moving, but it looks like I'm ready for bottling.
 
 The best part about pulling the hydrometer sample?  Tasting notes!
 
 #### Hydrometer Sample Tasting
-
 The sample was really quite interesting.  Granted, it was nearly room temp and not carbonated, but still... interesting.  The nose was pretty fruity - almost like a cider.  However, the flavor was entirely different.  The flavor is somewhat bitter on the tip of the tongue, followed by a nice malty, slightly fruity taste.  The finish is also slightly bitter and pretty dry.  There is also a fairly strong alcohol flavor, but it blends well with the rest of the flavors - not overpowering.
 
 I'll be really curious how this beer tastes in a few months after it is carbonated and conditioned in the bottle.
 
 ![center](http://i.imgur.com/1bqwLVC.jpg)
+
+### Update - 9/14/2016
+Bottled today.  SG was still around 1.013, so I think the fermentation is definitely complete.  The beer also cleared up fairly nicely.  It wasn't perfectly clear, but I figure (a) it will continue to clear in the bottle, and (b) a perfectly clear beer may not have enough yeast to carb up properly.
