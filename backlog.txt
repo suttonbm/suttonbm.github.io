@@ -1,0 +1,18 @@
+UMich NLP Projects:
+- Dependency Parsing
+- Word Sense Disambiguation
+- POS Tagging
+
+Stanford Machine Learning:
+- Linear Regression
+- Logistic Regressions
+- Multi-Class Classification
+- Neural Networks
+- Regularization
+- SVMs
+- K-Means Clustering, PCA
+- Anomaly Detection
+- Recommender Systems
+
+Stanford Algorithms:
+- 
