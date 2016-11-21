@@ -9,6 +9,8 @@ tags:
   - mead
   - homebrew
 project: homebrew
+excerpt: >
+  
 ---
 
 After the somewhat disappointing result of my first mead attempt, I set out to find a recipe that will hopefully take less than a year to mellow out.  Bray Denard has posted a [short metheglin recipe](https://www.denardbrewing.com/blog/post/Fidnemed/) on his blog utilizing an herbal tea for enhancing flavor in a low-ABV mead.  Feeling inspired, I set out to create my own version with a couple different teas.  The first variant used pure lavender, and the second used Celestial Seasonings' Orange Spice tea.

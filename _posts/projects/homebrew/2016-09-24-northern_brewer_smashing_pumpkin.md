@@ -9,6 +9,8 @@ tags:
   - beer
   - homebrew
 project: homebrew
+excerpt: >
+  Northern Brewer's Smashing Pumpkin Ale!
 ---
 
 Brewed a 1-gallon small batch kit of Northern Brewer's Smashing Pumpkin Ale!  Ingredients list follows:
