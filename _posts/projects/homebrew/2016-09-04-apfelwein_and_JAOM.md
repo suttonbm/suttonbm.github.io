@@ -59,6 +59,18 @@ I've been getting excited to brew some new beer, and I need to have my two 2-gal
 
 I also added 2tsp yeast nutrient and 1tsp yeast energizer after racking and sloshed around a bit to get the yeast up and running again.  Hopefully this won't stall out.
 
+#### Update: 9/19/2016
+Degassed the mead by sloshing it around in the carboy
+
+#### Update: 9/24/2016
+Looked pretty stuck, so I pitched some Lalvin EC-1118 to see if I could get it down a bit more
+
+#### Update: 9/26/2016
+Pulled some to take a SG reading - came out to ~1.016
+Wishing I'd had a hydrometer for the OG, because I may have actually pitched the yeast at a much higher SG than I was aiming for.  I was expecting this to go all the way dry, but I'm skeptical now.  Tasted the sample and it was like rocket fuel.  The flavor is still better than the nose - all I get there is rotten oranges :(
+
+I put the carboy back behind the washing machine for long-term storage; will revisit this in Nov or Dec.s
+
 ### Apfelwein
 I followed the apfelwein recipe pretty much exactly.  I think I ended up with a bit more corn sugar and less apple juice than the recipe calls for due to lack of volume in the fermenter, but I can always compensate for that by making a late addition of apple juice sometime.
 
@@ -85,3 +97,20 @@ Super quick and easy!  Since the juice is pasteurized, no boiling necessary.  I 
 Same as the mead.  It seems like the apfelwein was already pretty much done with fermentation; I measured the SG at 1.000.  Instead of racking into a single vessel, I decided to split this into two separate jugs.  My thought process is that I'll probably do half the batch sparkling and dry, and maybe leave the other one still (not sure if I'll backsweeten).  Plus, I only had one carboy large enough to hold two gallons.
 
 Since the fermentation appeared to be almost complete, I did top up both gallon jugs with fresh organic apple juice from Central Market.  Hopefully this will make up for the shortage of juice in primary, while at the same time helping to produce some CO2 to purge oxygen from the carboy.
+
+#### Update: 9/19/2016
+Pitched a little EC-1118 to make sure this came down the rest of the way in SG. Started bubbling like crazy for a few hours, but slowed back down.  I'm thinking this may have been CO2 coming out of solution due to the yeast particles.
+
+#### Update: 9/25/2016
+Threw the apfelwein in the fridge to cold crash
+
+#### Update: 9/26/2016
+Racked to a clean bucket over 2 crushed campden tablets, then separated into two 1-gal carboys.  Added 1/2tsp K-sorbate in the morning to stabilize.  Also, added 160mL [Mulling Spice Vodka]({{ base.url }}/2016/09/mulling_spice_vodka/)
+
+#### Update: 9/28/2016
+Back-sweetened with the following:
+
+  * "Spiced" Apfelwein - 1/3 cup table sugar
+  * Plain Apfelwein - 1/3 cup dark brown sugar
+
+Monitoring for renewed fermentation for the next week before bottling.

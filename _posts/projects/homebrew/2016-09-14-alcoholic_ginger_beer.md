@@ -7,7 +7,6 @@ categories:
   - projects
 tags:
   - cider
-  - mead
   - homebrew
 project: homebrew
 excerpt: >
@@ -44,3 +43,20 @@ This thing is fermenting like crazy.
 
 #### Update: 9/18/2016
 Seems like fermentation may be completed already.  Will wait a few more days and take a hydrometer reading to confirm.
+
+#### Update: 9/20/2016
+Measured SG 0.996 - I'm going to call this done!
+
+Some tasting notes:
+Nose has hints of ginger, citrus, and some yeasty flavors.  After cooling, I also pick up a little bit of banana, so there may be some diacetyl flavors in there.
+Taste is strongly sour - like, more sour than I was hoping.  It's really super dry, and although there is a little bit of ginger flavor, it's less than I was hoping for.  There is still a bit of a ginger "bite" in the finish, though.
+
+#### Update: 9/24/2016
+Went ahead and bottled this beastie with ~26g of dark brown sugar for priming.  I'm hoping the brown sugar will leave a little residual flavor.
+
+#### Update: 10/1/2016
+The brown sugar didn't leave much in the way of residual flavor. The taste is pretty decent overall, but I'd change a few things next time.  First, I'd cut back on the sour elements (lemon, lime), as the final product is pretty sour.  Second, I'd add some extra ginger, leave it in the fermenter for primary, and then add some additional ginger in secondary to kick up the ginger flavor a bit.  I do think that the molasses flavor would go nice with the ginger, so I'd also consider swapping out the turbinado/brown sugar combination in the boil with panilla.
+
+When I bottled this, it was still pretty cloudy, and I thought it would stay that way.  However, it cleared up alost completely in the bottle, leaving a pretty large pile of junk in the bottle.  I'd also let this sit for a while longer in the fermenter to allow it to clear.  Might need finings to get all the fine bits out.
+
+One final thought - i think I targeted about 2.5 volumes of CO2 on this.  It seemed a little flat for my taste; I would probably aim for somewhere closer to 3 volumes next time.
