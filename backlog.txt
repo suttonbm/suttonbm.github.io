@@ -15,4 +15,10 @@ Stanford Machine Learning:
 - Recommender Systems
 
 Stanford Algorithms:
-- 
+- Computing Inversions
+- Quicksort
+- Karger's Min Cut
+- Computing SCCs
+- Dijkstra's Shortest Path
+- Hashing -> 2-Sum Problem
+- Heaps -> Median Maintenance

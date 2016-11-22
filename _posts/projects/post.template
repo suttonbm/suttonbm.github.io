@@ -1,0 +1,16 @@
+---
+title: "Title Here"
+date: 2016-09-26
+author: suttonbm
+layout: post
+categories:
+  - projects
+tags:
+  - tags
+  - here
+project: PROJECT_NAME
+excerpt: >
+  EXCERPTS HERE
+---
+
+POST CONTENT HERE

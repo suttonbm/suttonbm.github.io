@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "UMich Natural Language Processing"
-excerpt: "Coursera NLP Course"
+title: "Stanford Algorithms Design and Analysis"
+excerpt: "Coursera Algorithms Course"
 search_omit: true
 categories:
   - projecthome
@@ -9,7 +9,7 @@ categories:
 
 <ul class="post-list">
 {% for post in site.posts %}
-{% if post.project == 'umich_nlp_coursera' %}
+{% if post.project == 'stanford_algthms' %}
   <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>{% if post.excerpt %} <span class="excerpt">{{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}</span>{% endif %}</a></article></li>
 {% endif %}
 {% endfor %}
