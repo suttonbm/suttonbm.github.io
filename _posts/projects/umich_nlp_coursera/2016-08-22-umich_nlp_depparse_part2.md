@@ -1,15 +1,18 @@
 ---
 layout: post
 author: suttonbm
+date: 2016-08-22
 categories:
   - projects
-title: "2016-08-22-umich_nlp_depparse_Part2"
+title: "UMich NLP Dependency Parsing - Implementation"
 tags:
   - python
   - nlp
   - umich
   - coursera
 project: umich_nlp_coursera
+excerpt: >
+  Dependency Parsing - Implementation
 --- 
 ### Implementation of the Operations
 First, let's discuss implementation of the four supported operations of our
@@ -118,14 +121,14 @@ I made multiple iterations to converge to a solution; these are outlined below.
 #### Data Structures
 Before getting into the iterations on the feature extractor, let's first define
 the data structure that is used the the extractor.  As discussed previously,
-there are three components of a parser configuration.  $B$ is the buffer,
-remaining words to be parsed.  $\Sigma$ is the stack, holding words that have
-been processed via the `right_arc()` or `shift()` operations.  $A$ is the set of
+there are three components of a parser configuration.  $$B$$ is the buffer,
+remaining words to be parsed.  $$\Sigma$$ is the stack, holding words that have
+been processed via the `right_arc()` or `shift()` operations.  $$A$$ is the set of
 arcs that have been added to the dependency graph.
 
-Note that $B$ and $\Sigma$ both contain words, which may have a variety of
+Note that $$B$$ and $$\Sigma$$ both contain words, which may have a variety of
 properties.  Therefore it may make sense to index those words and store them in
-a separate data structure.  Let's call that $T$, a list of dictionaries storing
+a separate data structure.  Let's call that $$T$$, a list of dictionaries storing
 the properties of each word.
 
 Let's take a look at an example. 
@@ -298,6 +301,7 @@ testGraph.nodes[3].keys()
  
 Not all of these properties are useful for training our SVM.  The descriptions
 of useful properties are as follows:
+
   * 'ctag': Coarse-grained part of speech.  For example, "NOUN"
   * 'tag': Fine-grained part of speech. For example, "NNS", or singular noun
   * 'word': The word itself 
@@ -308,7 +312,7 @@ feature extraction.
 #### Iteration #1 - POS Tags Unigram Model
 The first iteration of the feature extractor only made use of the coarse-grained
 part of speech for the top word in the stack and the buffer.  For example,
-$S=['company',...]$ and $\Sigma=['was',...]$ might identify two features.
+$$S=['company',...]$$ and $$\Sigma=['was',...]$$ might identify two features.
 "Company" would be a "NOUN" and "was" would be a "VERB".
 
 In code, this might look like: 

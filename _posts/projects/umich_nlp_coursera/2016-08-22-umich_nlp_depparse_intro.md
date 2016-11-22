@@ -1,15 +1,18 @@
 ---
 layout: post
 author: suttonbm
+date: 2016-08-22
 categories:
   - projects
-title: "2016-08-22-umich_nlp_depparse_intro"
+title: "UMich Dependency Parsing - Intro"
 tags:
   - python
   - nlp
   - umich
   - coursera
 project: umich_nlp_coursera
+excerpt: >
+  Introduction to the dependency parsing project
 --- 
 #### Syntax Dependency Parsing
 Syntax dependency parsing, as might be inferred by the name, is a process by
@@ -50,13 +53,13 @@ maximize the accuracy of dependency trees on that data, then apply those rules
 to new, unseen data to obtain a dependency tree. 
  
 #### Structure of a Dependency Graph
-The dependency graph of a sentence $ S = w_1, w_2, ... , w_n $ is a directed
-graph $ G = (V, A) $, where $V$ is the set of words (nodes), and $A$ is the set
+The dependency graph of a sentence $$ S = w_1, w_2, ... , w_n $$ is a directed
+graph $$ G = (V, A) $$, where $$V$$ is the set of words (nodes), and $$A$$ is the set
 of labeled dependencies (arcs).
 
-The arc $i \rightarrow j$ specifies a dependency relationship from $j$ to $i$,
-and we can say that the **head** of the dependency is $w_i$ and its
-**dependent** is $w_j$. 
+The arc $$i \rightarrow j$$ specifies a dependency relationship from $$j$$ to $$i$$,
+and we can say that the **head** of the dependency is $$w_i$$ and its
+**dependent** is $$w_j$$. 
  
 #### The Shift-Reduce Parser [1]
 We can define a simple shift-reduce parser as an algorithm which, operates on a
@@ -68,36 +71,36 @@ operations:
   * Shift: Remove a word from the *buffer* and push it onto the *stack*
   * Reduce: Remove the top word in the *stack*
 
-Formally, the configuration $C$ is defined by the tuple $(\Sigma, B, A)$, where
-$\Sigma$ is the stack, $B$ is the buffer, and $A$ is a set of specified
+Formally, the configuration $$C$$ is defined by the tuple $$(\Sigma, B, A)$$, where
+$$\Sigma$$ is the stack, $$B$$ is the buffer, and $$A$$ is a set of specified
 dependency relations.
 
-If we define the next (top) node in $\Sigma$ as $s$ and the next node in $B$ as
-$b$, and define the label (name) of a dependency relation $L$:
+If we define the next (top) node in $\Sigma$ as $$s$$ and the next node in $$B$$ as
+$$b$$, and define the label (name) of a dependency relation $$L$$:
 
- * $left\_arc(C)$ : add arc $(b, L, s)$ and remove $s$ from $\Sigma$
- * $right\_arc(C)$ : add arc $(s, L, b)$ and push $b$ onto $\Sigma$
- * $shift(C)$ : push $b$ onto $\Sigma$ without an arc
- * $reduce(C)$ : remove $s$ from $\Sigma$
+ * $$left\_arc(C)$$ : add arc $$(b, L, s)$$ and remove $$s$$ from $$\Sigma$$
+ * $$right\_arc(C)$$ : add arc $$(s, L, b)$$ and push $$b$$ onto $$\Sigma$$
+ * $$shift(C)$$ : push $$b$$ onto $$\Sigma$$ without an arc
+ * $$reduce(C)$$ : remove $$s$$ from $$\Sigma$$
 
 Note that not all of the transitions are valid for all possible configurations:
 
- * $left\_arc$ is invalid if:
-   * (a) $B$ is empty
-   * (b) $s$ is the root node $0$, or
-   * (c) $\exists a \in A$ where $s$ is a dependent
- * $right\_arc$ is invalid if:
-   * (a) $B$ is empty, or
-   * (b) $\Sigma$ is empty
- * $shift$ is invalid if:
-   * (a) $\Sigma$ is empty, or
-   * (b) $\neg \exists a \in A$ where $s$ is a dependent
- * $reduce$ is invalid if:
-   * (a) $B$ is empty, or
-   * (b) $\Sigma$ is empty 
+ * $$left\_arc()$$ is invalid if:
+   * (a) $$B$$ is empty
+   * (b) $$s$$ is the root node $$0$$, or
+   * (c) $$\exists a \in A$$ where $$s$$ is a dependent
+ * $$right\_arc()$$ is invalid if:
+   * (a) $$B$$ is empty, or
+   * (b) $$\Sigma$$ is empty
+ * $$shift()$$ is invalid if:
+   * (a) $$\Sigma$$ is empty, or
+   * (b) $$\neg \exists a \in A$$ where $$s$$ is a dependent
+ * $$reduce()$$ is invalid if:
+   * (a) $$B$$ is empty, or
+   * (b) $$\Sigma$$ is empty 
  
 #### Implementation of the Shift-Reduce Parser
 The shift-reduce parser can be trained to determine correct operations on a
 given configuration $C$ using a support vector machine. The implementation of
 this machine is discussed further in [part 2]({{ base.url
-}}/2016/08/umich_nlp_depparse_part2) 
+}}/2016/08/umich_nlp_depparse_part2/)
