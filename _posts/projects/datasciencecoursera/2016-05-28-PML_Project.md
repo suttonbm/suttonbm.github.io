@@ -147,7 +147,7 @@ conf.classTree <- confusionMatrix(model.test$classe, pred.classTree)
 ```
 
 ```
-##  Accuracy 
+##  Accuracy
 ## 0.4948173
 ```
 
@@ -186,7 +186,7 @@ conf.rf <- confusionMatrix(model.test$classe, pred.rf)
 ```
 
 ```
-## Accuracy 
+## Accuracy
 ## 0.993373
 ```
 
@@ -223,7 +223,7 @@ conf.boosted <- confusionMatrix(model.test$classe, pred.boosted)
 ```
 
 ```
-##  Accuracy 
+##  Accuracy
 ## 0.9617672
 ```
 

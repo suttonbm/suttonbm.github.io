@@ -1,5 +1,4 @@
 UMich NLP Projects:
-- Dependency Parsing
 - Word Sense Disambiguation
 - POS Tagging
 
