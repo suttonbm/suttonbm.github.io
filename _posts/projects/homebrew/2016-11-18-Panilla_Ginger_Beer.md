@@ -40,4 +40,13 @@ Racked to secondary fermenter with additional 12oz Chopped Ginger.  Ginger was v
 Bottled, primed with dextrose, target 3 vol CO2.
 
 #### Tasting Notes
-Forthcoming!
+Some good news and some bad news.  The good news - adding ginger in secondary really brought back a nice ginger aroma and some of the ginger "burn".  This improved greatly upon my first attempt.  The bad news - panela tastes awful as the only source of sugar in the drink.  There is very little residual molasses or brown-sugar flavor left, and there's a strong taste which I can only describe as "minerally".  Overall, the final product tastes to me almost medicinal, but not in a good way.
+
+Aside from taste, I also felt that it lacked in body.  The mouthfeel left much to be desired; almost coming across as fizzy water.
+
+Considering all this, I have a few ideas for how I might improve this recipe in the future:
+
+  * Go back to using sugar instead of panela as the primary fermentable, to avoid the mineral flavors.
+  * Alternatively, consider a sugar that might impart more flavor, such as honey.
+  * To address mouthfeel/body, perhaps consider adding some maltodextrin or lactose.
+  * If I get a little wilder, I could also consider using extra light malt as the fermentable base, then supplement with ginger for flavor.  Might seem more like a beer than a traditional ginger beer.

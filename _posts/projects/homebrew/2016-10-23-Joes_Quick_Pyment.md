@@ -26,4 +26,4 @@ Pretty straightforward.  Poured in honey and grape juice, topped up with clean w
 Kept at ~65F for the first week, then let rise to ~74F until done fermenting.  Racked onto 1 campden tablet after ~3 weeks, added K-Sorbate after a day of activation (to avoid gerianols).  Racked again onto 6oz Kirkland honey to backsweeten.
 
 #### Tasting Notes
-Forthcoming!
+So... Not sure I'd make this one again.  Maybe I made the wrong honey selection, but it just tasted a bit hoochy, and almost medicinal to me.  Even after 4-5 months in the bottle, it isn't really working for my palate.  At any rate, thanks very much to Joe for coming up with this recipe for me to try :).
