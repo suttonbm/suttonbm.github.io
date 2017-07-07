@@ -41,3 +41,16 @@ Carmelize 3lb clover honey until aroma of toasted marshmallow.  Add hot water un
 
 #### 4/30/17
 Added 0.25lb Buckwheat honey to primary.
+
+#### 6/16/17
+Pulled a sample to taste.
+
+Appearance: Clear, dark golden in color.
+Nose: Sweet. Raisin or prune notes. Slight molasses coming through.
+Flavor: Quite sweet.  Some clover honey comes through.  No bitterness.  A bit of fusel in there maybe, mixed with something almost medicinal.  Some raisin or prune flavor mixed in there as well.  Finish is pretty long, with some borderline toastiness.
+Mouthfeel: Pretty full.  Leaves a coating feel in the mouth with lingering sweetnes.
+
+Overall, not bad, but could probably use a bit more age.  I think I probably could have gone a bit darker with the caramelization as well.  I would have liked a bit more toastiness to it.  Perhaps some heavy char oak would help...
+
+#### 7/6/17
+Slight change of plan.  I noticed that this was starting to develop some tropical fruit notes - likely from resting on the lees of D47 for three months.  I noticed that the flavors seemed to complement Hye Silver Rum...  So I racked onto ~350mL of that.  Flavor is pretty awesome now.  Hoping it will continue to improve with age.

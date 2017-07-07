@@ -108,3 +108,10 @@ Racked to secondary.  FG 1.008.  Calculated ABV 6.67%, apparent attenuation 86%.
 Nose: Malty, maybe some slight bananas?  Fairly dry mouthfeel with ever-so-slight residual sweetness.  Almost no noticable bitterness.  Very little alcohol taste.  Noticed that my sample precipitated quite a bit of yeast during cooling, so may need to consider fining or cold clearing this before bottling.
 
 Comments: Clearly this over-attenuated.  There are many factors which may have come into play to cause this.  First, because my mash efficiency was so low, I had to add far more DME than expected.  If the fermentability of the DME was high, then FG should be low.  Second, I used a different yeast than the orignal recipe called for; this yeast may have higher expected attenuation.  I haven't researched it.  I don't think this will end up being a bad beer; I'll just have to wait and see how it turns out after bottling.
+
+#### 5/9/17: Bottled @ 2.7 vol
+Appearance: Moderate carbonation, with decent head retention.  Some lacing on the glass.
+Nose: Apples and malt.
+Flavor: Light, slight sweetness with the malt.  Sharp carbonation, and short aftertaste.  The slight bananas from bottling seems to have dissipated.  Not very strong alcohol, but a little bit in the finish.
+
+Overall, a pretty enjoyable drink.  Not too heavy in the flavor or body department.  I wish it was slightly more crisp, but otherwise quite good.

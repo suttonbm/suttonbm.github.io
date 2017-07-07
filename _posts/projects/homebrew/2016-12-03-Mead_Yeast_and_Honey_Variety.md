@@ -123,6 +123,19 @@ Actual: 1.512lb Frozen Berries.  Didn't really let them thaw out all the way; I 
 #### 4/30/17
 Racked off the berries.  Seems to have gone dry.  Mead has a fantastic berry nose, and is a beautiful shade of red.  Flavor is quite nice, but a bit dry and acidic.  Will most likely backsweeten a bit.  Stabilized with 1/2t K-sorbate.  Will wait a few days and backsweeten.  Need to decide how to sweeten - honey, juice, or concentrate.  Or sugar.
 
+#### 6/14/17
+Adjusted acid, sweetness, and tannin to taste.  First time making flavor adjustments, so it was a bit adhoc.  However, I think the process was pretty decent.  I took three small cups and filled them with a known quantity of water, then added a known quantity of tannin, acid blend, and honey.  I had to re-measure the honey to compensate for volume change.  I then drew a small 90mL sample from the carboy and gradually added 2-3mL of each adjustment at a time until I was satisfied with the flavor.  I then adjusted up to the total volume, heated some water to just off a boil (to sanitize) then added to the carboy.
+
+Final adjustments were:
+Wine Tannin 0.53g
+Acid Blend 0.71g
+Clover Honey 3.8oz (by wt)
+
+I'll let it sit in the fermenter for a few days to ensure it is not bubbling, then bottle.
+
+#### 6/16/17
+It's bubbling again...?
+
 #### Appendix: Original SNA Plan
 Planned SNA:
 Nutrient Schedule (Abbaye)

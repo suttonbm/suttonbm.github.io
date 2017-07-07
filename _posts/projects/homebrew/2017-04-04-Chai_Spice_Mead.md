@@ -44,3 +44,29 @@ Will let sit in primary for a couple months, rack, wait some more, then backswee
 
 #### 4/30/17
 Added 0.2lb OB honey to primary.
+
+#### 6/16/17
+Pulled a sample from primary to taste.
+
+Appearance: Clear, and light golden in color.
+Nose: Clover honey right off the nose.  Floral, with a hint of spices in the background.
+Flavor: Definite alcohol.  Slightly tart.  Don't get too much honey character or spice.
+Mouthfeel: Full body.  Definitely dry, and has some tannin to it.
+
+Overall, not super impressed.  Probably need to consider sweetening it to help the spices "pop".  Could also use a bit more age, I suppose.  It has only been two months.
+
+#### 7/6/17
+Was still a bit disappointed with the aroma (no chai!) so I decided to amp it up.  I had planned to do another chai mead, except a bochet, and made some chai extract for that.  Decided to add it to this to kick the flavor up a notch.  Racked onto about 300mL. Details for that below.
+
+#### Chai Tea Extract:
+6 Green Cardamom Pods, Cracked
+2.5 Cinnamon Sticks
+4 White Peppercorns
+5 Cloves
+2 Tbsp Dried Ginger Slices
+1 Star Anise
+1 Allspice Berry
+2 tsp Assam Tea
+8 oz. Vodka
+
+Steep spices and tea in the vodka for 2-3 weeks, until it punches you in the face when you open the jar.  Strain out the spices and dilute with 4oz water.
