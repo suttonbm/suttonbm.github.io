@@ -32,3 +32,10 @@ Yeast Pitched 7/3, PM
 Stirred 7/4, PM
 Punch-Down 7/5, PM
 Punch-Down 7/6, PM
+Punch-Down 7/7, PM
+Punch-Down 7/8, PM
+Punch-Down 7/9, PM
+Punch-Down 7/10, PM
+
+#### 7/11/2017
+Strained to secondary today.  Ended up with more volume than originally planned - close to two gallons.  Decided to strain into two separate gallon jugs instead of one plus mason jars.  Added a can of red grape juice concentrate to one, hoping it ends up slightly sweet.  The other was left dry.  Added one campden tablet to each gallon.
