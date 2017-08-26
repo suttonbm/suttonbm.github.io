@@ -39,3 +39,12 @@ Punch-Down 7/10, PM
 
 #### 7/11/2017
 Strained to secondary today.  Ended up with more volume than originally planned - close to two gallons.  Decided to strain into two separate gallon jugs instead of one plus mason jars.  Added a can of red grape juice concentrate to one, hoping it ends up slightly sweet.  The other was left dry.  Added one campden tablet to each gallon.
+
+#### 8/1/2017
+I may have labeled these backwards.  Seems like the one with "sweet" is less so?  Either way, I'll just stick with the labelling and figure it out later.
+
+"Sweet": Bracingly sour.  I may try to lower the acidity on this by adding KHCO3 to reduce sourness.  This is part of the reason I think this one is actually the dry wine.  The flavor is quite nice though, good grape flavor throughout.  I may need to learn how to measure TA.  I don't want to try acid reduction on this one before I know the actual amounts.  I'll go ahead and oak this and read up on titration in the meantime.
+
+"Dry": Far less sour than the first, and somewhat more brilliant purple shade.  Strong wild grape flavor to this one which was not apparent in the sweet version.  Still bubbling slightly - might need to add a bit of nutrient to help it finish up.  Will go ahead and add oak in the meantime.
+
+Added 10 american medium char cubes to each, and topped up with water.

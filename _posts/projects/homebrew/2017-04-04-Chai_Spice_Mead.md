@@ -58,6 +58,12 @@ Overall, not super impressed.  Probably need to consider sweetening it to help t
 #### 7/6/17
 Was still a bit disappointed with the aroma (no chai!) so I decided to amp it up.  I had planned to do another chai mead, except a bochet, and made some chai extract for that.  Decided to add it to this to kick the flavor up a notch.  Racked onto about 300mL. Details for that below.
 
+#### 8/1/17
+Topped up with some water.
+
+#### 8/26/2017
+Bottled.
+
 #### Chai Tea Extract:
 6 Green Cardamom Pods, Cracked
 2.5 Cinnamon Sticks

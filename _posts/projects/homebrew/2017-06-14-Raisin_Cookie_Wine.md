@@ -34,3 +34,6 @@ Transferred to glass carboy.  I tried filtering the raisins out through a mesh b
 
 #### 6/27/17
 Fermentation seems to have died down.  Hopefully I didn't oxidize it too bad by splash transferring.  Lots of sediment in the carboy.  May have to try cold crashing to see if the sediment compacts down any more.
+
+#### 8/1/17
+I don't know what I'm doing with this.  I've given up on tracking progress since I've done so many weird things.  Today, racked into a clean carboy, leaving about an inch of sediment on the bottom.  Topped up with water and an unspecified quantity of clover honey.  Also added one campden tablet and a cinnamon stick.  Will let it sit for a week or so, taste, and possibly add some oak?  Who knows.

@@ -136,6 +136,9 @@ I'll let it sit in the fermenter for a few days to ensure it is not bubbling, th
 #### 6/16/17
 It's bubbling again...?
 
+#### 8/1/17
+Yeah, I screwed up.  Added the stuff above to the crackberry clone, not this.  Accidentally bottled this without any adjustment.  Flavor is OK, but overall the balance is horrible.  Super low acidity and tannins - almost tastes like cough syrup.  Bummer...
+
 #### Appendix: Original SNA Plan
 Planned SNA:
 Nutrient Schedule (Abbaye)

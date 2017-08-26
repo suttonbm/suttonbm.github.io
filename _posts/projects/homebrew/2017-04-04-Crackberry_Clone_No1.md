@@ -32,3 +32,15 @@ Nose: Almost like honey.  Hope I didn't mix this up with another experiment ._. 
 Flavor: Light, with berries at the forefront.  Some alcohol percieved, but not a huge amount.  I think it could have used a bit more acidity to balance the flavor.
 
 Assuming I didn't screw up, this should carb in the next few weeks.  Will be interesting to see how it tastes once there is no residual sugar and the carbonation is there to add a bit more acidity to the flavor.  I think this should end up being a pretty refreshing drink.
+
+#### 8/1/17
+Yeah, I screwed up.  I think that I added:
+
+Wine Tannin 0.53g
+Acid Blend 0.71g
+Clover Honey 3.8oz (by wt)
+
+sometime around a month ago.  Sampled today, and flavor was OK, if a little watery.  Probably need to stick with carbonating this.  Will schedule bottling sometime soon.  May need to repitch yeast since this has been sitting so long.
+
+#### 8/26/2017
+Bottled at 2.5vol target.  Added a bit of EC-1118 to supplement the yeast since it's been so long.

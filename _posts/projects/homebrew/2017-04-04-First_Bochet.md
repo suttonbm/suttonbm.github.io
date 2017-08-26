@@ -54,3 +54,9 @@ Overall, not bad, but could probably use a bit more age.  I think I probably cou
 
 #### 7/6/17
 Slight change of plan.  I noticed that this was starting to develop some tropical fruit notes - likely from resting on the lees of D47 for three months.  I noticed that the flavors seemed to complement Hye Silver Rum...  So I racked onto ~350mL of that.  Flavor is pretty awesome now.  Hoping it will continue to improve with age.
+
+#### 8/1/17
+Topped up with some water.
+
+#### 8/26/2017
+Bottled.

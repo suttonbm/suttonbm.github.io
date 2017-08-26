@@ -36,3 +36,9 @@ Added 1/4tsp KHCO3 at 72hr as well.
 
 #### Process Notes
 Actual OG ~1.110
+
+#### 6/18/17
+Poured into secondary, with excess added to 1qt mason jar
+
+#### 8/1/17
+Nose is strong fruit, mostly raspberry with some blueberry.  Not much honey detected.  Maybe barely in the background.  Good berry flavor, but quite acidic.  Also somewhat lacking tannins.  Might need some oak to round out.  Racked to clean carboy to get off the lees, added 5 american oak and 5 french oak medium cubes.  Topped up with reserved qty in mason jar.

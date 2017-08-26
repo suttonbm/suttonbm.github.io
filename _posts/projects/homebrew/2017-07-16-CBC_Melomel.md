@@ -26,3 +26,6 @@ Aerate before each SNA addition
 
 Fermentation Temp:
 Start @ 15C, raise 2C/day when adding SNAs.
+
+#### 8/19/2017
+Racked to clean carboy, with excess reserved in a mason jar.  Added 5 cubes french oak.  Plan to keep in for ~3 weeks, then rack again.

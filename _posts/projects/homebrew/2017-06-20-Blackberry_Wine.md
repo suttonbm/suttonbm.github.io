@@ -47,3 +47,6 @@ Sealed up in the bucket after adding fourth nutrient addition.  I've been fermen
 
 #### 7/6/17
 Racked to secondary with one campden tablet.  Reserved excess in a mason jar.  Added 6 medium+ char french oak cubes and 4 medium char american oak cubes.  Should age for ~6 months before I touch it.
+
+#### 8/1/17
+Topped up with some of the reserved wine
